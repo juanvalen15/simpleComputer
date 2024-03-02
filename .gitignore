@@ -1,0 +1,7 @@
+
+*.psm
+*.dbs
+*.prw
+*.dat
+hardware/simulation/modelsim/rtl_work/_info
+*.sdo
