@@ -54,3 +54,11 @@ xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.tcl
 xilinx_simpleComputer/xilinx_simpleComputer.ip_user_files/README.txt
 xilinx_simpleComputer/xilinx_simpleComputer.ip_user_files/mem_init_files/instr.mif
 xilinx_simpleComputer/xilinx_simpleComputer.ip_user_files/mem_init_files/data.mif
+*.replay
+*.edf
+xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/.Xil/Vivado-4845-xubu/realtime/tmp/resynth_cleanup.tcl
+xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/htr.txt
+xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/processor.tcl
+xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/clockInfo.txt
+*.vdi
+*.rpx
