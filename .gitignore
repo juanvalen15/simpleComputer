@@ -62,3 +62,5 @@ xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/processor.tcl
 xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/clockInfo.txt
 *.vdi
 *.rpx
+hardware/.DS_Store
+assembler/.DS_Store
