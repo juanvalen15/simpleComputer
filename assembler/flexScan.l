@@ -1,3 +1,4 @@
+/* Section 1: declaration and options settings. code in between %{ %} */
 %{
 
 #include <math.h>
@@ -19,6 +20,8 @@ void add_instr(int opco, int oper);
 ADDRE   $[0-9]+
 EMPTY    [ \t\n]
 
+
+/* Section 2: list of patterns and actions. code in between %% %% */
 %%
 
 "NOP"     eval_opcode( 0);
@@ -33,6 +36,8 @@ EMPTY    [ \t\n]
 .         fprintf(f_instr, "Syntax error: %s\n", yytext);
 %%
 
+
+/* Section 3: C code */
 char *itob(int x, int w)
 {
 	int z;
