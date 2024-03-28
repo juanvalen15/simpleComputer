@@ -1,0 +1,2 @@
+simpleComputer.v,verilog,xil_defaultlib,../../../../xilinx_simpleComputer.gen/sources_1/bd/simpleComputer/sim/simpleComputer.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

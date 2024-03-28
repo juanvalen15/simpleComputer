@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.tcl"
+  variable script "/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,32 +70,30 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
+set_param chipscope.maxJobs 8
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xck26-sfvc784-2LV-c
+create_project -in_memory -part xczu7ev-ffvc1156-2-e
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/wt [current_project]
-set_property parent.project_path /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.xpr [current_project]
+set_property webtalk.parent_dir /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/wt [current_project]
+set_property parent.project_path /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property board_part xilinx.com:kv260_som:part0:1.4 [current_project]
-set_property ip_output_repo /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/ip [current_project]
+set_property board_part xilinx.com:zcu106:part0:2.6 [current_project]
+set_property ip_output_repo /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_mem {
-  /home/juan/Desktop/tempMac/simpleComputer/hardware/instr.mif
-  /home/juan/Desktop/tempMac/simpleComputer/hardware/data.mif
+  /home/juan/github/simpleComputer/hardware/instr.mif
+  /home/juan/github/simpleComputer/hardware/data.mif
 }
 read_verilog -library xil_defaultlib {
-  /home/juan/Desktop/tempMac/simpleComputer/hardware/alu.v
-  /home/juan/Desktop/tempMac/simpleComputer/hardware/pc.v
-  /home/juan/Desktop/tempMac/simpleComputer/hardware/processor.v
+  /home/juan/github/simpleComputer/hardware/alu.v
+  /home/juan/github/simpleComputer/hardware/pc.v
+  /home/juan/github/simpleComputer/hardware/processor.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -108,11 +106,11 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 }
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.srcs/utils_1/imports/synth_1/test.dcp
+read_checkpoint -auto_incremental -incremental /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.srcs/utils_1/imports/synth_1/test.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top processor -part xck26-sfvc784-2LV-c
+synth_design -top processor -part xczu7ev-ffvc1156-2-e
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "/home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/processor.tcl"
+  variable script "/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/processor.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,8 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -124,29 +122,29 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param checkpoint.writeSynthRtdsInDcp 1
-  set_param runs.launchOptions { -jobs 1  }
+  set_param chipscope.maxJobs 8
+  set_param runs.launchOptions { -jobs 16  }
 OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xck26-sfvc784-2LV-c
-  set_property board_part xilinx.com:kv260_som:part0:1.4 [current_project]
+  create_project -in_memory -part xczu7ev-ffvc1156-2-e
+  set_property board_part xilinx.com:zcu106:part0:2.6 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/wt [current_project]
-  set_property parent.project_path /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.xpr [current_project]
-  set_property ip_output_repo /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/wt [current_project]
+  set_property parent.project_path /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.xpr [current_project]
+  set_property ip_output_repo /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet /home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.dcp
+  add_files -quiet /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.dcp
 OPTRACE "read constraints: implementation" START { }
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
-  link_design -top processor -part xck26-sfvc784-2LV-c 
+  link_design -top processor -part xczu7ev-ffvc1156-2-e 
 OPTRACE "link_design" END { }
 OPTRACE "gray box cells" START { }
 OPTRACE "gray box cells" END { }

@@ -4,13 +4,13 @@
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
 # Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-# Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+# Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/tools/Xilinx/Vivado/2023.2/ids_lite/ISE/bin/lin64:/tools/Xilinx/Vivado/2023.2/bin
+  PATH=/home/juan/Xilinx/v2023P2/Vivado/2023.2/ids_lite/ISE/bin/lin64:/home/juan/Xilinx/v2023P2/Vivado/2023.2/bin
 else
-  PATH=/tools/Xilinx/Vivado/2023.2/ids_lite/ISE/bin/lin64:/tools/Xilinx/Vivado/2023.2/bin:$PATH
+  PATH=/home/juan/Xilinx/v2023P2/Vivado/2023.2/ids_lite/ISE/bin/lin64:/home/juan/Xilinx/v2023P2/Vivado/2023.2/bin:$PATH
 fi
 export PATH
 
@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1'
+HD_PWD='/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
