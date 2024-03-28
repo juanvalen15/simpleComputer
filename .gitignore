@@ -22,7 +22,6 @@ xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/test.tcl
 *.pb
 *.rpt
 *.jou
-*.bd
 *.db
 *.prj
 *.wdb
