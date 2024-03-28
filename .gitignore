@@ -16,7 +16,6 @@ xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/htr.txt
 *.sh
 *.bat
 *.log
-*.dcp
 xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/test.tcl
 *.vds
 *.pb
