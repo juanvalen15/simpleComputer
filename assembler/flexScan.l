@@ -1,15 +1,15 @@
-/* Section 1: declaration and options settings. code in between %{ %} */
+/* ------------- section 1: declarations and option settings ------------- */
 %{
 
 #include <math.h>
 #include <string.h>
 
-#define NBITS_OPC 3   // # bits of the opcode
-#define NBITS_OPR 8   // # bits of the operand
+#define NBITS_OPC 3   // Numero de bits do opcode
+#define NBITS_OPR 8   // Numero de bits do operando
 
 FILE *f_instr;
 
-int  c_op;      // store current opcode
+int  c_op;      // guarda opcode atual
 
 void eval_opcode(int   op);
 void eval_opernd(char *id);
@@ -17,27 +17,27 @@ void add_instr(int opco, int oper);
 
 %}
 
+/* ------------- section 2: list of patterns and actions ------------- */
+
 ADDRE   $[0-9]+
 EMPTY    [ \t\n]
 
-
-/* Section 2: list of patterns and actions. code in between %% %% */
 %%
 
-"NOP"     eval_opcode( 0);
-"STOP"    eval_opcode( 1);
-"LOAD"    eval_opcode( 2);
-"SET"     eval_opcode( 3);
-"ADD"     eval_opcode( 4);
-"MULT"    eval_opcode( 5);
+"NOP"     eval_opcode(0);
+"STOP"    eval_opcode(1);
+"LOAD"    eval_opcode(2);
+"SET"     eval_opcode(3);
+"ADD"     eval_opcode(4);
+"MULT"    eval_opcode(5);
 
 {ADDRE}   eval_opernd(yytext);
 {EMPTY}
-.         fprintf(f_instr, "Syntax error: %s\n", yytext);
+.         fprintf(f_instr, "SYNTAX ERROR: %s\n", yytext);
 %%
 
+/* ------------- section 3: C code ------------- */
 
-/* Section 3: C code */
 char *itob(int x, int w)
 {
 	int z;
@@ -54,17 +54,26 @@ char *itob(int x, int w)
     return b;
 }
 
-void eval_opcode(int op)
-{
+void eval_opcode(int op) {
     c_op = op;
 
-	switch (op)
-    {
-        case 2  :                  break;
-        case 3  :                  break;
-        case 4  :                  break;
-        case 5  :                  break;
-        default : add_instr(op,0); break;
+    switch (op) {
+        case 2:  // LOAD
+        case 3:  // SET
+            eval_opernd(yytext);
+            break;
+        case 4:  // ADD
+        case 5:  // MULT
+            int add = atoi(yytext+1);  // Assuming operand starts from second character
+            if (add < 0) {
+                fprintf(stderr, "Error: Negative operand not supported for instruction %d\n", op);
+                return;  // Exit the function if negative operand encountered
+            }
+            add_instr(op, add);
+            break;
+        default:
+            add_instr(op, 0);
+            break;
     }
 }
 
@@ -84,7 +93,7 @@ int main(int argc, char *argv[])
 	yyin    = fopen(argv[1], "r");
 	f_instr = fopen(argv[3], "w");
 	yylex();
-    fclose(yyin   );
+    fclose(yyin);
 	fclose(f_instr);
 
     return 0;
