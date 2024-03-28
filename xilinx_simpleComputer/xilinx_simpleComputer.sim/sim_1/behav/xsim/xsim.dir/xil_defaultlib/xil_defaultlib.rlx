@@ -1,0 +1,11 @@
+0.7
+2020.2
+Oct 13 2023
+20:21:30
+/home/juan/Desktop/tempMac/simpleComputer/hardware/alu.v,1709377217,verilog,,/home/juan/Desktop/tempMac/simpleComputer/hardware/mem_data.v,,alu,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/hardware/mem_data.v,1709377406,verilog,,/home/juan/Desktop/tempMac/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/hardware/mem_instr.v,1709376050,verilog,,/home/juan/Desktop/tempMac/simpleComputer/hardware/pc.v,,mem_instr,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/hardware/pc.v,1709377362,verilog,,/home/juan/Desktop/tempMac/simpleComputer/hardware/processor.v,,pc,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/hardware/processor.v,1709377483,verilog,,/home/juan/Desktop/tempMac/simpleComputer/hardware/test.v,,processor,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/hardware/test.v,1709392401,verilog,,,,test,,,,,,,,
+/home/juan/Desktop/tempMac/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
