@@ -1,42 +1,59 @@
-/* ------------- section 1: declarations and option settings ------------- */
 %{
 
 #include <math.h>
 #include <string.h>
+#include "variables.h"
 
-#define NBITS_OPC 3   // Numero de bits do opcode
-#define NBITS_OPR 8   // Numero de bits do operando
+#define NBITS_OPC 3                // Numero de bits do opcode
+#define NBITS_OPR 8                // Numero de bits do operando
+#define NBITS_DAT 32               // Numero de bits do dado
 
-FILE *f_instr;
+FILE *f_data, *f_instr;
 
+int  pp    = 1; // flag do pre-processador
+int  state = 0; // 0 -> Busca opcode, 1 -> Busca operando,
 int  c_op;      // guarda opcode atual
 
+void pp_opcode(int   op);
+void pp_opernd(char *va, int is_const);
 void eval_opcode(int   op);
-void eval_opernd(char *id);
+void eval_opernd(char *id, int is_const);
+
+int n_ins = 0;  // numero de instrucoes adicionadas
+int *opc, *opr;  // lista de instrucoes
+
 void add_instr(int opco, int oper);
+void build_instr();
+void build_data ();
 
 %}
 
-/* ------------- section 2: list of patterns and actions ------------- */
-
 ADDRE   $[0-9]+
-EMPTY    [ \t\n]
+CONST   [-+ ][0-9]+
+VARIA   [a-zA-Z][a-zA-Z0-9_]*
+
+COMEN   "//"[^\n]*
+EMPTY   [ \t]
+LINHA   \n
 
 %%
 
-"NOP"     eval_opcode(0);
-"STOP"    eval_opcode(1);
-"LOAD"    eval_opcode(2);
-"SET"     eval_opcode(3);
-"ADD"     eval_opcode(4);
-"MULT"    eval_opcode(5);
+"NOP"     if (!pp) eval_opcode( 0); else pp_opcode( 0);
+"STOP"    if (!pp) eval_opcode( 1); else pp_opcode( 1);
+"LOAD"    if (!pp) eval_opcode( 2); else pp_opcode( 2);
+"SET"     if (!pp) eval_opcode( 3); else pp_opcode( 3);
+"ADD"     if (!pp) eval_opcode( 4); else pp_opcode( 4);
+"MULT"    if (!pp) eval_opcode( 5); else pp_opcode( 5);
 
-{ADDRE}   eval_opernd(yytext);
+{ADDRE}   if (!pp) eval_opernd(yytext,1); else state = 0;
+{CONST}   if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,1);
+{VARIA}   if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,0);
+
+{COMEN}
 {EMPTY}
-.         fprintf(f_instr, "SYNTAX ERROR: %s\n", yytext);
+{LINHA}   if (state != 0) fprintf(f_instr, "Erro: esperando operando\n");
+.                         fprintf(f_instr, "Erro de sintaxe: %s\n", yytext);
 %%
-
-/* ------------- section 3: C code ------------- */
 
 char *itob(int x, int w)
 {
@@ -54,46 +71,96 @@ char *itob(int x, int w)
     return b;
 }
 
-void eval_opcode(int op) {
-    c_op = op;
+void pp_opcode(int op)
+{
+    if (state != 0)
+    {
+        printf("Erro: esperando opcode\n");
+    }
 
-    switch (op) {
-        case 2:  // LOAD
-        case 3:  // SET
-            eval_opernd(yytext);
-            break;
-        case 4:  // ADD
-        case 5:  // MULT
-            int add = atoi(yytext+1);  // Assuming operand starts from second character
-            if (add < 0) {
-                fprintf(stderr, "Error: Negative operand not supported for instruction %d\n", op);
-                return;  // Exit the function if negative operand encountered
-            }
-            add_instr(op, add);
-            break;
-        default:
-            add_instr(op, 0);
-            break;
+    n_ins++;
+
+    switch (op)
+    {
+        case 2  : state = 1; break;
+        case 3  : state = 1; break;
+        case 4  : state = 1; break;
+        case 5  : state = 1; break;
+        default :            break;
     }
 }
 
-void eval_opernd(char *id)
+void pp_opernd(char *va, int is_const)
 {
-    int add = atoi(id+1);
+    if (state == 1)
+    {
+        if (find_var(va) == -1)
+        {
+            add_var(va, is_const);
+            int val = (is_const) ? atoi(va) : 0;
+            fprintf(f_data, "%s\n", itob(val, NBITS_DAT));
+        }
+    }
+    else fprintf(f_instr, "Erro: esperando operando\n");
+
+	state = 0;
+}
+
+void eval_opcode(int op)
+{
+    c_op = op;
+
+	switch (op)
+    {
+        case 2  : state = 1;       break;
+        case 3  : state = 1;       break;
+        case 4  : state = 1;       break;
+        case 5  : state = 1;       break;
+        default : add_instr(op,0); break;
+    }
+}
+
+void eval_opernd(char *id, int is_const)
+{
+    int add = (is_const) ? atoi(id+1) : find_var(id);
     add_instr(c_op, add);
+    state = 0;
 }
 
 void add_instr(int opco, int oper)
 {
-    fprintf(f_instr, "%s%s\n", itob(opco,NBITS_OPC), itob(oper,NBITS_OPR));
+    opc[n_ins] = opco;
+    opr[n_ins] = oper;
+    n_ins++;
+}
+
+void build_instr()
+{
+    int i;
+
+    for (i = 0; i < n_ins; i++)
+    fprintf(f_instr, "%s%s\n", itob(opc[i],NBITS_OPC), itob(opr[i],NBITS_OPR));
 }
 
 int main(int argc, char *argv[])
 {
+    yyin   = fopen(argv[1], "r");
+	f_data = fopen(argv[2], "w");
+	pp = 1;
+    yylex();
+	fclose(yyin  );
+	fclose(f_data);
+
+	opc = (int*)malloc(2*n_ins*sizeof(int));
+	opr = (int*)malloc(2*n_ins*sizeof(int));
+
 	yyin    = fopen(argv[1], "r");
 	f_instr = fopen(argv[3], "w");
+	pp = 0;
+	n_ins = 0;
 	yylex();
-    fclose(yyin);
+	build_instr();
+    fclose(yyin   );
 	fclose(f_instr);
 
     return 0;

@@ -1,4 +1,4 @@
-LOAD    1234
-ADD     -1
+LOAD    5
+ADD     3
 SET     $10
 STOP
