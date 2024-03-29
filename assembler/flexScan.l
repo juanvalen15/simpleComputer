@@ -4,23 +4,23 @@
 #include <string.h>
 #include "variables.h"
 
-#define NBITS_OPC 3                // Numero de bits do opcode
-#define NBITS_OPR 8                // Numero de bits do operando
-#define NBITS_DAT 32               // Numero de bits do dado
+#define NBITS_OPC 3                // #bits opcode
+#define NBITS_OPR 8                // #bits operand
+#define NBITS_DAT 32               // #bits data
 
 FILE *f_data, *f_instr;
 
-int  pp    = 1; // flag do pre-processador
-int  state = 0; // 0 -> Busca opcode, 1 -> Busca operando,
-int  c_op;      // guarda opcode atual
+int  pp    = 1; // pre-processor flag
+int  state = 0; // 0 -> search opcode, 1 -> search operand
+int  c_op;      // save current opcode
 
 void pp_opcode(int   op);
 void pp_opernd(char *va, int is_const);
 void eval_opcode(int   op);
 void eval_opernd(char *id, int is_const);
 
-int n_ins = 0;  // numero de instrucoes adicionadas
-int *opc, *opr;  // lista de instrucoes
+int n_ins = 0;  // # of added instructions
+int *opc, *opr;  // list of instructions
 
 void add_instr(int opco, int oper);
 void build_instr();
@@ -51,8 +51,8 @@ LINHA   \n
 
 {COMEN}
 {EMPTY}
-{LINHA}   if (state != 0) fprintf(f_instr, "Erro: esperando operando\n");
-.                         fprintf(f_instr, "Erro de sintaxe: %s\n", yytext);
+{LINHA}   if (state != 0) fprintf(f_instr, "ERROR: waiting operand\n");
+.                         fprintf(f_instr, "Syntax ERROR: %s\n", yytext);
 %%
 
 char *itob(int x, int w)
@@ -75,7 +75,7 @@ void pp_opcode(int op)
 {
     if (state != 0)
     {
-        printf("Erro: esperando opcode\n");
+        printf("ERROR: waiting opcode\n");
     }
 
     n_ins++;
@@ -101,7 +101,7 @@ void pp_opernd(char *va, int is_const)
             fprintf(f_data, "%s\n", itob(val, NBITS_DAT));
         }
     }
-    else fprintf(f_instr, "Erro: esperando operando\n");
+    else fprintf(f_instr, "ERROR: waiting operand\n");
 
 	state = 0;
 }
@@ -144,23 +144,28 @@ void build_instr()
 
 int main(int argc, char *argv[])
 {
+    // input file
     yyin   = fopen(argv[1], "r");
+
+    // data.mif
 	f_data = fopen(argv[2], "w");
 	pp = 1;
     yylex();
-	fclose(yyin  );
+	fclose(yyin);
 	fclose(f_data);
 
 	opc = (int*)malloc(2*n_ins*sizeof(int));
 	opr = (int*)malloc(2*n_ins*sizeof(int));
 
 	yyin    = fopen(argv[1], "r");
+
+    // instr.mif
 	f_instr = fopen(argv[3], "w");
 	pp = 0;
 	n_ins = 0;
 	yylex();
 	build_instr();
-    fclose(yyin   );
+    fclose(yyin);
 	fclose(f_instr);
 
     return 0;

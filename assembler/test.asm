@@ -1,4 +1,4 @@
-LOAD    5
-ADD     3
-SET     $10
-STOP
+LOAD    1
+SET     $2
+LOAD    3
+SET     $4

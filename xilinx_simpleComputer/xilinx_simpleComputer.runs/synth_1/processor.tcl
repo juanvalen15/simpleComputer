@@ -70,7 +70,10 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 8
+set_param checkpoint.writeSynthRtdsInDcp 1
+set_param synth.incrementalSynthesisCache ./.Xil/Vivado-16671-jubu/incrSyn
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xczu7ev-ffvc1156-2-e
 
@@ -92,6 +95,7 @@ read_mem {
 }
 read_verilog -library xil_defaultlib {
   /home/juan/github/simpleComputer/hardware/alu.v
+  /home/juan/github/simpleComputer/hardware/instr_decoder.v
   /home/juan/github/simpleComputer/hardware/pc.v
   /home/juan/github/simpleComputer/hardware/processor.v
 }

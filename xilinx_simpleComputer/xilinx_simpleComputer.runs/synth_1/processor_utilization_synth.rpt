@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date         : Thu Mar 28 23:12:03 2024
+| Date         : Fri Mar 29 22:47:05 2024
 | Host         : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command      : report_utilization -file processor_utilization_synth.rpt -pb processor_utilization_synth.pb
 | Design       : processor
@@ -32,13 +32,13 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| CLB LUTs*               |   70 |     0 |          0 |    230400 |  0.03 |
-|   LUT as Logic          |   70 |     0 |          0 |    230400 |  0.03 |
+| CLB LUTs*               |    7 |     0 |          0 |    230400 | <0.01 |
+|   LUT as Logic          |    7 |     0 |          0 |    230400 | <0.01 |
 |   LUT as Memory         |    0 |     0 |          0 |    101760 |  0.00 |
-| CLB Registers           |   40 |     0 |          0 |    460800 | <0.01 |
-|   Register as Flip Flop |   40 |     0 |          0 |    460800 | <0.01 |
+| CLB Registers           |    8 |     0 |          0 |    460800 | <0.01 |
+|   Register as Flip Flop |    8 |     0 |          0 |    460800 | <0.01 |
 |   Register as Latch     |    0 |     0 |          0 |    460800 |  0.00 |
-| CARRY8                  |    4 |     0 |          0 |     28800 |  0.01 |
+| CARRY8                  |    0 |     0 |          0 |     28800 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |    115200 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |     57600 |  0.00 |
 | F9 Muxes                |    0 |     0 |          0 |     28800 |  0.00 |
@@ -60,7 +60,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 40    |          Yes |           - |        Reset |
+| 8     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -83,12 +83,11 @@ Warning! LUT value is adjusted to account for LUT combining.
 3. ARITHMETIC
 -------------
 
-+----------------+------+-------+------------+-----------+-------+
-|    Site Type   | Used | Fixed | Prohibited | Available | Util% |
-+----------------+------+-------+------------+-----------+-------+
-| DSPs           |    1 |     0 |          0 |      1728 |  0.06 |
-|   DSP48E2 only |    1 |       |            |           |       |
-+----------------+------+-------+------------+-----------+-------+
++-----------+------+-------+------------+-----------+-------+
+| Site Type | Used | Fixed | Prohibited | Available | Util% |
++-----------+------+-------+------------+-----------+-------+
+| DSPs      |    0 |     0 |          0 |      1728 |  0.00 |
++-----------+------+-------+------------+-----------+-------+
 
 
 4. I/O
@@ -97,7 +96,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +------------+------+-------+------------+-----------+-------+
 |  Site Type | Used | Fixed | Prohibited | Available | Util% |
 +------------+------+-------+------------+-----------+-------+
-| Bonded IOB |   95 |     0 |          0 |       360 | 26.39 |
+| Bonded IOB |   62 |     0 |          0 |       360 | 17.22 |
 +------------+------+-------+------------+-----------+-------+
 
 
@@ -159,17 +158,15 @@ Warning! LUT value is adjusted to account for LUT combining.
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | OBUF     |   49 |                 I/O |
-| INBUF    |   46 |                 I/O |
-| IBUFCTRL |   46 |              Others |
-| FDCE     |   40 |            Register |
-| LUT6     |   34 |                 CLB |
-| LUT2     |   34 |                 CLB |
-| CARRY8   |    4 |                 CLB |
-| LUT3     |    2 |                 CLB |
+| INBUF    |   13 |                 I/O |
+| IBUFCTRL |   13 |              Others |
+| FDCE     |    8 |            Register |
+| LUT3     |    3 |                 CLB |
+| LUT6     |    2 |                 CLB |
+| LUT2     |    2 |                 CLB |
 | LUT5     |    1 |                 CLB |
 | LUT4     |    1 |                 CLB |
 | LUT1     |    1 |                 CLB |
-| DSP48E2  |    1 |          Arithmetic |
 | BUFGCE   |    1 |               Clock |
 +----------+------+---------------------+
 
