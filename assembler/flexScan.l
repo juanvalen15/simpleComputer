@@ -165,78 +165,46 @@ void add_instr(int opco, int oper)
 
 void build_data()
 {
-    printf("0xAA0000");
     int i;
-    printf("0xAA0001");
 
-    for (i = get_vcont(); i < DATA_WID; i++){
-        printf("0xAA0002");
+    for (i = get_vcont(); i < DATA_WID; i++)
         fprintf(f_data, "%s\n", itob(0, NBITS_DAT));
-    }
-    
-    printf("0xAA0003");
 }
 
 void build_instr()
 {
-    printf("0xBB0000");
     int i;
-    printf("0xBB0001");
 
-    for (i = 0; i < n_ins; i++){
-        printf("0xBB0002");
+    for (i = 0; i < n_ins; i++)
         fprintf(f_instr, "%s%s\n", itob(opc[i],NBITS_OPC), itob(opr[i],NBITS_OPR));
-    }
-
-    printf("0xBB0003");
 }
 
 int main(int argc, char *argv[])
 {
-    printf("0x0000A0");
     // input file
     yyin   = fopen(argv[1], "r");
-    printf("0x0000A1");
 
     // data.mif
-    printf("0x0000A2");
 	f_data = fopen(argv[2], "w");
-    printf("0x0000A3");
 	pp = 1;
-    printf("0x0000A4");
     yylex();
-    printf("0x0000A5");
     build_data();
-    printf("0x0000A6");
 	fclose(yyin);
-    printf("0x0000A7");
 	fclose(f_data);
-    printf("0x0000A8");
 
 	opc = (int*)malloc(n_ins*sizeof(int));
-    printf("0x0000A9");
 	opr = (int*)malloc(n_ins*sizeof(int));
-    printf("0x0000AA");
 
 	yyin = fopen(argv[1], "r");
-    printf("0x0000AB");
 
     // instr.mif
-    printf("0x0000AC");
 	f_instr = fopen(argv[3], "w");
-    printf("0x0000AD");
 	pp = 0;
-    printf("0x0000AE");
 	n_ins = 0;
-    printf("0x0000AF");
 	yylex();
-    printf("0x0000B0");
 	build_instr();
-    printf("0x0000B1");
     fclose(yyin);
-    printf("0x0000B2");
 	fclose(f_instr);
-    printf("0x0000B3");
 
     return 0;
 }
