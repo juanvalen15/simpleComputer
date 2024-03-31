@@ -14,7 +14,7 @@ always #10 clk = ~clk;
 
 // Processor ------------------------------------------------------------------
 
-wire [11:0] instr;
+wire [10:0] instr;
 wire [ 7:0] instr_addr;
 
 wire               mem_wr;

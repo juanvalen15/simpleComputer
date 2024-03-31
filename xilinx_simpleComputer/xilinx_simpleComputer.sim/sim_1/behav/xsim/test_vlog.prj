@@ -1,6 +1,7 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
 "../../../../../hardware/alu.v" \
+"../../../../../hardware/instr_decoder.v" \
 "../../../../../hardware/mem_data.v" \
 "../../../../../hardware/mem_instr.v" \
 "../../../../../hardware/pc.v" \
