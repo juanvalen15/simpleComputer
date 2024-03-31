@@ -2,25 +2,26 @@
 module processor
 (
 	input          clk, rst,
-
-	input          [10:0] instr,   // memória de instrução
+    
+    // instruction memory
+	input          [10:0] instr,
 	output         [ 7:0] instr_addr,
 	
+	// data memory
 	output         mem_wr,
-	output         [ 7:0] mem_addr,  // acesso à memória de dados 
+	output         [ 7:0] mem_addr,
 	input  signed  [31:0] mem_data_in,
 	output signed  [31:0] mem_data_out
 );
 
 // Instruction Decoder -------------------------------------------------
-wire [1:0] id_alu_op;
-wire       id_pc_en;
-wire       id_mem_wr;
+wire    [1:0] id_alu_op;
+wire    id_pc_en;
+wire    id_mem_wr;
 
 instr_decoder id(instr[10:8], id_ula_op, id_pc_en, id_mem_wr);
 
 // ALU ------------------------------------------------------------------------
-//wire        [ 1:0] alu_op  = instr[9:8];
 wire signed [31:0] alu_in1 = mem_data_in;
 wire signed [31:0] alu_in2;
 wire signed [31:0] alu_out;
