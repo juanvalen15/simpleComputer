@@ -1,4 +1,2 @@
-LOAD    1
-SET     $2
-LOAD    3
-SET     $4
+LOAD 1
+LOAD 2

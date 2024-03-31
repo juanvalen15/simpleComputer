@@ -3,10 +3,13 @@
 #include <math.h>
 #include <string.h>
 #include "variables.h"
+#include "labels.h"
 
 #define NBITS_OPC 3                // #bits opcode
 #define NBITS_OPR 8                // #bits operand
 #define NBITS_DAT 32               // #bits data
+#define INSTR_WID pow(2,NBITS_OPR) // width instruction memory
+#define DATA_WID  pow(2,NBITS_OPR) // width data memory
 
 FILE *f_data, *f_instr;
 
@@ -16,6 +19,7 @@ int  c_op;      // save current opcode
 
 void pp_opcode(int   op);
 void pp_opernd(char *va, int is_const);
+void pp_label (char *la);
 void eval_opcode(int   op);
 void eval_opernd(char *id, int is_const);
 
@@ -28,31 +32,36 @@ void build_data ();
 
 %}
 
-ADDRE   $[0-9]+
-CONST   [-+ ][0-9]+
-VARIA   [a-zA-Z][a-zA-Z0-9_]*
+ADDRESS     $[0-9]+
+CONSTANT    [-+ ][0-9]+
+VARIABLE    [a-zA-Z][a-zA-Z0-9_]*
+LABEL       @[a-zA-Z][a-zA-Z0-9_]*
 
-COMEN   "//"[^\n]*
-EMPTY   [ \t]
-LINHA   \n
+COMMENT     "//"[^\n]*
+EMPTY       [ \t]
+LINE        \n
 
 %%
 
-"NOP"     if (!pp) eval_opcode( 0); else pp_opcode( 0);
-"STOP"    if (!pp) eval_opcode( 1); else pp_opcode( 1);
-"LOAD"    if (!pp) eval_opcode( 2); else pp_opcode( 2);
-"SET"     if (!pp) eval_opcode( 3); else pp_opcode( 3);
-"ADD"     if (!pp) eval_opcode( 4); else pp_opcode( 4);
-"MULT"    if (!pp) eval_opcode( 5); else pp_opcode( 5);
+"NOP"       if (!pp) eval_opcode( 0); else pp_opcode( 0);
+"STOP"      if (!pp) eval_opcode( 1); else pp_opcode( 1);
+"LOAD"      if (!pp) eval_opcode( 2); else pp_opcode( 2);
+"SET"       if (!pp) eval_opcode( 3); else pp_opcode( 3);
+"ADD"       if (!pp) eval_opcode( 4); else pp_opcode( 4);
+"MULT"      if (!pp) eval_opcode( 5); else pp_opcode( 5);
+"JNZ"       if (!pp) eval_opcode( 5); else pp_opcode( 5);
+"JZ"        if (!pp) eval_opcode( 6); else pp_opcode( 6);
+"JMP"       if (!pp) eval_opcode( 7); else pp_opcode( 7);
 
-{ADDRE}   if (!pp) eval_opernd(yytext,1); else state = 0;
-{CONST}   if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,1);
-{VARIA}   if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,0);
+{ADDRESS}   if (!pp) eval_opernd(yytext,1); else state = 0;
+{CONSTANT}  if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,1);
+{VARIABLE}  if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,0);
+{LABEL}     if ( pp) pp_label(yytext);
 
-{COMEN}
+{COMMENT}
 {EMPTY}
-{LINHA}   if (state != 0) fprintf(f_instr, "ERROR: waiting operand\n");
-.                         fprintf(f_instr, "Syntax ERROR: %s\n", yytext);
+{LINE}      if (state != 0) fprintf(f_instr, "ERROR: waiting operand\n");
+.           fprintf(f_instr, "Syntax ERROR: %s\n", yytext);
 %%
 
 char *itob(int x, int w)
@@ -85,14 +94,16 @@ void pp_opcode(int op)
         case 2  : state = 1; break;
         case 3  : state = 1; break;
         case 4  : state = 1; break;
-        case 5  : state = 1; break;
+        case 5  : state = 2; break;
+        case 6  : state = 2; break;
+        case 7  : state = 2; break;
         default :            break;
     }
 }
 
 void pp_opernd(char *va, int is_const)
 {
-    if (state == 1)
+    if (state == 1) // operand
     {
         if (find_var(va) == -1)
         {
@@ -101,9 +112,25 @@ void pp_opernd(char *va, int is_const)
             fprintf(f_data, "%s\n", itob(val, NBITS_DAT));
         }
     }
+    else if (state == 2) // label
+    {
+        if (find_label(va) == -1) add_label(va, is_const);
+    }
     else fprintf(f_instr, "ERROR: waiting operand\n");
 
 	state = 0;
+}
+
+void pp_label(char *la)
+{
+    if (state != 0)
+    {
+        fprintf(f_instr, "Syntax ERROR\n");
+        return;
+    }
+
+    if (find_label(la+1) == -1) add_label(la+1,0);
+    set_label (la+1, n_ins);
 }
 
 void eval_opcode(int op)
@@ -115,14 +142,16 @@ void eval_opcode(int op)
         case 2  : state = 1;       break;
         case 3  : state = 1;       break;
         case 4  : state = 1;       break;
-        case 5  : state = 1;       break;
+        case 5  : state = 2;       break;
+        case 6  : state = 2;       break;
+        case 7  : state = 2;       break;
         default : add_instr(op,0); break;
     }
 }
 
 void eval_opernd(char *id, int is_const)
 {
-    int add = (is_const) ? atoi(id+1) : find_var(id);
+    int add = (is_const) ? atoi(id+1) : (state == 1) ? find_var(id) : find_label(id);
     add_instr(c_op, add);
     state = 0;
 }
@@ -134,39 +163,80 @@ void add_instr(int opco, int oper)
     n_ins++;
 }
 
+void build_data()
+{
+    printf("0xAA0000");
+    int i;
+    printf("0xAA0001");
+
+    for (i = get_vcont(); i < DATA_WID; i++){
+        printf("0xAA0002");
+        fprintf(f_data, "%s\n", itob(0, NBITS_DAT));
+    }
+    
+    printf("0xAA0003");
+}
+
 void build_instr()
 {
+    printf("0xBB0000");
     int i;
+    printf("0xBB0001");
 
-    for (i = 0; i < n_ins; i++)
-    fprintf(f_instr, "%s%s\n", itob(opc[i],NBITS_OPC), itob(opr[i],NBITS_OPR));
+    for (i = 0; i < n_ins; i++){
+        printf("0xBB0002");
+        fprintf(f_instr, "%s%s\n", itob(opc[i],NBITS_OPC), itob(opr[i],NBITS_OPR));
+    }
+
+    printf("0xBB0003");
 }
 
 int main(int argc, char *argv[])
 {
+    printf("0x0000A0");
     // input file
     yyin   = fopen(argv[1], "r");
+    printf("0x0000A1");
 
     // data.mif
+    printf("0x0000A2");
 	f_data = fopen(argv[2], "w");
+    printf("0x0000A3");
 	pp = 1;
+    printf("0x0000A4");
     yylex();
+    printf("0x0000A5");
+    build_data();
+    printf("0x0000A6");
 	fclose(yyin);
+    printf("0x0000A7");
 	fclose(f_data);
+    printf("0x0000A8");
 
-	opc = (int*)malloc(2*n_ins*sizeof(int));
-	opr = (int*)malloc(2*n_ins*sizeof(int));
+	opc = (int*)malloc(n_ins*sizeof(int));
+    printf("0x0000A9");
+	opr = (int*)malloc(n_ins*sizeof(int));
+    printf("0x0000AA");
 
-	yyin    = fopen(argv[1], "r");
+	yyin = fopen(argv[1], "r");
+    printf("0x0000AB");
 
     // instr.mif
+    printf("0x0000AC");
 	f_instr = fopen(argv[3], "w");
+    printf("0x0000AD");
 	pp = 0;
+    printf("0x0000AE");
 	n_ins = 0;
+    printf("0x0000AF");
 	yylex();
+    printf("0x0000B0");
 	build_instr();
+    printf("0x0000B1");
     fclose(yyin);
+    printf("0x0000B2");
 	fclose(f_instr);
+    printf("0x0000B3");
 
     return 0;
 }
