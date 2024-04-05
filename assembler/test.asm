@@ -1,4 +1,4 @@
-LOAD    1234
+LOAD    20
 ADD     -1
 SET     $10
 STOP

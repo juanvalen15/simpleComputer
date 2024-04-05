@@ -1,0 +1,23 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/impl/timing/xsim/test_time_impl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module IBUF_UNIQ_BASE_
+INFO: [VRFC 10-311] analyzing module IBUF_HD1
+INFO: [VRFC 10-311] analyzing module IBUF_HD10
+INFO: [VRFC 10-311] analyzing module IBUF_HD11
+INFO: [VRFC 10-311] analyzing module IBUF_HD12
+INFO: [VRFC 10-311] analyzing module IBUF_HD2
+INFO: [VRFC 10-311] analyzing module IBUF_HD3
+INFO: [VRFC 10-311] analyzing module IBUF_HD4
+INFO: [VRFC 10-311] analyzing module IBUF_HD5
+INFO: [VRFC 10-311] analyzing module IBUF_HD6
+INFO: [VRFC 10-311] analyzing module IBUF_HD7
+INFO: [VRFC 10-311] analyzing module IBUF_HD8
+INFO: [VRFC 10-311] analyzing module IBUF_HD9
+INFO: [VRFC 10-311] analyzing module pc
+INFO: [VRFC 10-311] analyzing module processor
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/hardware/mem_data.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_data
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/hardware/mem_instr.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_instr
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/hardware/test.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module test

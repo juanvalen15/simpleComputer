@@ -40,9 +40,9 @@ always @ (*) begin
 						mem_wr <= 1'b0;
 					end
 		default: begin
-						ula_op <= 2'dx;
-						pc_en  <= 1'bx;
-						mem_wr <= 1'bx;
+						ula_op <= 2'd0;
+						pc_en  <= 1'b0;
+						mem_wr <= 1'b0;
 					end
 	endcase
 end

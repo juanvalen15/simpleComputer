@@ -1,0 +1,8 @@
+0.7
+2020.2
+Feb  8 2024
+23:58:30
+/home/juan/github/simpleComputer/hardware/mem_data.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
+/home/juan/github/simpleComputer/hardware/mem_instr.v,1711916005,verilog,,/home/juan/github/simpleComputer/hardware/test.v,,mem_instr,,,,,,,,
+/home/juan/github/simpleComputer/hardware/test.v,1711919682,verilog,,,,test,,,,,,,,
+/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/impl/timing/xsim/test_time_impl.v,1712259316,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,IBUF_HD1;IBUF_HD10;IBUF_HD11;IBUF_HD12;IBUF_HD2;IBUF_HD3;IBUF_HD4;IBUF_HD5;IBUF_HD6;IBUF_HD7;IBUF_HD8;IBUF_HD9;IBUF_UNIQ_BASE_;glbl;pc;processor,,,,,,,,

@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"test_time_impl.v" \
+"../../../../../../hardware/mem_data.v" \
+"../../../../../../hardware/mem_instr.v" \
+"../../../../../../hardware/test.v" \
+
+# Do not sort compile order
+nosort

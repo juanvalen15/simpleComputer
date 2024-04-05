@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date         : Sun Mar 31 20:29:41 2024
+| Date         : Fri Apr  5 11:38:25 2024
 | Host         : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command      : report_utilization -file processor_utilization_synth.rpt -pb processor_utilization_synth.pb
 | Design       : processor
@@ -161,9 +161,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | INBUF    |   13 |                 I/O |
 | IBUFCTRL |   13 |              Others |
 | FDCE     |    8 |            Register |
-| LUT3     |    3 |                 CLB |
-| LUT2     |    3 |                 CLB |
+| LUT3     |    4 |                 CLB |
 | LUT6     |    2 |                 CLB |
+| LUT2     |    2 |                 CLB |
 | LUT5     |    1 |                 CLB |
 | LUT4     |    1 |                 CLB |
 | LUT1     |    1 |                 CLB |

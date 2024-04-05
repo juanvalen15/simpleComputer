@@ -3,10 +3,10 @@
 Feb  8 2024
 23:58:30
 /home/juan/github/simpleComputer/hardware/alu.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/instr_decoder.v,,alu,,,,,,,,
-/home/juan/github/simpleComputer/hardware/instr_decoder.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,instr_decoder,,,,,,,,
+/home/juan/github/simpleComputer/hardware/instr_decoder.v,1712310364,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,instr_decoder,,,,,,,,
 /home/juan/github/simpleComputer/hardware/mem_data.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
 /home/juan/github/simpleComputer/hardware/mem_instr.v,1711916005,verilog,,/home/juan/github/simpleComputer/hardware/pc.v,,mem_instr,,,,,,,,
 /home/juan/github/simpleComputer/hardware/pc.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/processor.v,,pc,,,,,,,,
-/home/juan/github/simpleComputer/hardware/processor.v,1711749273,verilog,,/home/juan/github/simpleComputer/hardware/test.v,,processor,,,,,,,,
-/home/juan/github/simpleComputer/hardware/test.v,1711912114,verilog,,,,test,,,,,,,,
+/home/juan/github/simpleComputer/hardware/processor.v,1711919864,verilog,,/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,,processor,,,,,,,,
+/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,1712310896,verilog,,,,tb_simpleProcessor,,,,,,,,
 /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v,1711663571,verilog,,,,glbl,,,,,,,,
