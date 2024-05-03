@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="87.401 ns"></ZoomEndTime>
+      <ZoomEndTime time="127.297 ns"></ZoomEndTime>
       <Cursor1Time time="27.800 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="268"></NameColumnWidth>
+      <NameColumnWidth column_width="264"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="7" />
    <wvobject type="logic" fp_name="/tb_simpleProcessor/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -49,9 +49,5 @@
       <obj_property name="ElementShortName">mem_data_in[31:0]</obj_property>
       <obj_property name="ObjectShortName">mem_data_in[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_data_out">
-      <obj_property name="ElementShortName">mem_data_out[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_data_out[31:0]</obj_property>
    </wvobject>
 </wave_config>

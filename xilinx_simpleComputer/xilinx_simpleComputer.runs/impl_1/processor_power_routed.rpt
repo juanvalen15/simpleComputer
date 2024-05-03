@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date             : Fri Apr  5 11:39:41 2024
+| Date             : Sat Apr  6 23:46:12 2024
 | Host             : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command          : report_power -file processor_power_routed.rpt -pb processor_power_summary_routed.pb -rpx processor_power_routed.rpx
 | Design           : processor
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 4.231        |
+| Total On-Chip Power (W)  | 5.058        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 3.619        |
-| Device Static (W)        | 0.612        |
+| Dynamic (W)              | 4.441        |
+| Device Static (W)        | 0.616        |
 | Effective TJA (C/W)      | 1.0          |
-| Max Ambient (C)          | 95.9         |
-| Junction Temperature (C) | 29.1         |
+| Max Ambient (C)          | 95.0         |
+| Junction Temperature (C) | 30.0         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,15 +52,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| CLB Logic      |     0.034 |       22 |       --- |             --- |
-|   LUT as Logic |     0.030 |        8 |    230400 |           <0.01 |
-|   Register     |     0.003 |        8 |    460800 |           <0.01 |
+| CLB Logic      |     0.060 |       22 |       --- |             --- |
+|   LUT as Logic |     0.055 |        8 |    230400 |           <0.01 |
+|   Register     |     0.004 |        8 |    460800 |           <0.01 |
 |   BUFG         |    <0.001 |        1 |        64 |            1.56 |
 |   Others       |     0.000 |        2 |       --- |             --- |
-| Signals        |     0.096 |       25 |       --- |             --- |
-| I/O            |     3.489 |       62 |       360 |           17.22 |
-| Static Power   |     0.612 |          |           |                 |
-| Total          |     4.231 |          |           |                 |
+| Signals        |     0.107 |       25 |       --- |             --- |
+| I/O            |     4.274 |       62 |       360 |           17.22 |
+| Static Power   |     0.616 |          |           |                 |
+| Total          |     5.058 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,21 +70,21 @@ Table of Contents
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source          | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint          |       0.850 |     0.352 |       0.195 |      0.157 |       NA    | Unspecified | NA         |
+| Vccint          |       0.850 |     0.408 |       0.245 |      0.162 |       NA    | Unspecified | NA         |
 | Vccint_io       |       0.850 |     0.071 |       0.000 |      0.071 |       NA    | Unspecified | NA         |
 | Vccbram         |       0.850 |     0.002 |       0.000 |      0.002 |       NA    | Unspecified | NA         |
 | Vccaux          |       1.800 |     0.147 |       0.000 |      0.147 |       NA    | Unspecified | NA         |
-| Vccaux_io       |       1.800 |     0.507 |       0.452 |      0.055 |       NA    | Unspecified | NA         |
+| Vccaux_io       |       1.800 |     0.609 |       0.554 |      0.055 |       NA    | Unspecified | NA         |
 | Vcco33          |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25          |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18          |       1.800 |     1.467 |       1.467 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18          |       1.800 |     1.798 |       1.798 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15          |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135         |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12          |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco10          |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc          |       1.800 |     0.008 |       0.000 |      0.008 |       NA    | Unspecified | NA         |
 | VCC_PSINTFP     |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| VCC_PSINTLP     |       0.850 |     0.005 |       0.000 |      0.005 |       NA    | Unspecified | NA         |
+| VCC_PSINTLP     |       0.850 |     0.006 |       0.000 |      0.006 |       NA    | Unspecified | NA         |
 | VPS_MGTRAVCC    |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCC_PSINTFP_DDR |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCC_PSPLL       |       1.200 |     0.002 |       0.000 |      0.002 |       NA    | Unspecified | NA         |
@@ -156,10 +156,10 @@ Table of Contents
 +-----------------------+-----------+
 | Name                  | Power (W) |
 +-----------------------+-----------+
-| processor             |     3.619 |
+| processor             |     4.441 |
 |   clk_IBUF_inst       |     0.004 |
 |   instr_IBUF[0]_inst  |     0.010 |
-|   instr_IBUF[10]_inst |     0.007 |
+|   instr_IBUF[10]_inst |     0.006 |
 |   instr_IBUF[1]_inst  |     0.010 |
 |   instr_IBUF[2]_inst  |     0.010 |
 |   instr_IBUF[3]_inst  |     0.010 |
@@ -169,7 +169,7 @@ Table of Contents
 |   instr_IBUF[7]_inst  |     0.010 |
 |   instr_IBUF[8]_inst  |     0.007 |
 |   instr_IBUF[9]_inst  |     0.006 |
-|   pc                  |     0.070 |
+|   pc                  |     0.107 |
 +-----------------------+-----------+
 
 

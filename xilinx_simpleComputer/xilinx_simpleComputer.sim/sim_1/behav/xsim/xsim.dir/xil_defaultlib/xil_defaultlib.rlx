@@ -3,7 +3,7 @@
 Feb  8 2024
 23:58:30
 /home/juan/github/simpleComputer/hardware/alu.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/instr_decoder.v,,alu,,,,,,,,
-/home/juan/github/simpleComputer/hardware/instr_decoder.v,1712310364,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,instr_decoder,,,,,,,,
+/home/juan/github/simpleComputer/hardware/instr_decoder.v,1712439867,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,instr_decoder,,,,,,,,
 /home/juan/github/simpleComputer/hardware/mem_data.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
 /home/juan/github/simpleComputer/hardware/mem_instr.v,1711916005,verilog,,/home/juan/github/simpleComputer/hardware/pc.v,,mem_instr,,,,,,,,
 /home/juan/github/simpleComputer/hardware/pc.v,1710709136,verilog,,/home/juan/github/simpleComputer/hardware/processor.v,,pc,,,,,,,,
