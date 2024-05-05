@@ -4,7 +4,7 @@ module processor
 	input          clk, rst,
     
     // instruction memory
-	input          [10:0] instr,
+	input          [11:0] instr,
 	output         [ 7:0] instr_addr,
 	
 	// data memory
@@ -15,18 +15,19 @@ module processor
 );
 
 // Instruction Decoder -------------------------------------------------
-wire    [1:0] id_alu_op;
-wire    id_pc_en;
-wire    id_mem_wr;
+wire signed	[31:0] 	id_nzero = mem_data_out;
+wire    	[ 2:0] 	id_alu_op;
+wire    			id_pc_load;
+wire    			id_mem_wr;
 
-instr_decoder id(instr[10:8], id_ula_op, id_pc_en, id_mem_wr);
+instr_decoder id(.opcode(instr[11:8]) , .acc(id_nzero), .alu_op(id_alu_op), .pc_load(id_pc_load), .mem_wr(id_mem_wr));
 
 // ALU ------------------------------------------------------------------------
 wire signed [31:0] alu_in1 = mem_data_in;
 wire signed [31:0] alu_in2;
 wire signed [31:0] alu_out;
 
-alu alu(id_alu_op, alu_in1, alu_in2, alu_out);
+alu alu(.op(id_alu_op), .in1(alu_in1), .in2(alu_in2), .out_alu(alu_out));
 
 // Accumulator register--------------------------------------------------------
 reg signed [31:0] acc;
@@ -41,7 +42,10 @@ end
 assign alu_in2 = acc;
 
 // Program Counter ------------------------------------------------------------
-pc pc(clk, rst, id_pc_en, instr_addr);
+wire 		pc_load = id_pc_load;
+wire [7:0]  pc_data = instr[7:0];
+
+pc pc(.clk(clk), .rst(rst), .load(pc_load), .data(pc_data), .addr(instr_addr));
 
 // Data memory interface  -----------------------------------------------------
 assign mem_data_out = acc;

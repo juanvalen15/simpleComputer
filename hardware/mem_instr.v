@@ -1,13 +1,14 @@
 module mem_instr
 (
+	input 			  clk,
 	input      [ 7:0] addr,
-	output reg [10:0] data
+	output reg [11:0] data
 );
 
-reg [10:0] mem [255:0];
+reg [11:0] mem [255:0];
 
 initial $readmemb("./instr.mif", mem);
 
-always @ (addr) data <= mem[addr];
+always @ (*) data <= mem[addr];
 
 endmodule 

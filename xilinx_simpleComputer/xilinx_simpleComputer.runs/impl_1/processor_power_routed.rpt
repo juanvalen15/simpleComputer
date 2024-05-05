@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date             : Sat Apr  6 23:46:12 2024
+| Date             : Sun May  5 19:53:57 2024
 | Host             : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command          : report_power -file processor_power_routed.rpt -pb processor_power_summary_routed.pb -rpx processor_power_routed.rpx
 | Design           : processor
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 5.058        |
+| Total On-Chip Power (W)  | 47.250       |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 4.441        |
-| Device Static (W)        | 0.616        |
+| Dynamic (W)              | 46.026       |
+| Device Static (W)        | 1.225        |
 | Effective TJA (C/W)      | 1.0          |
-| Max Ambient (C)          | 95.0         |
-| Junction Temperature (C) | 30.0         |
+| Max Ambient (C)          | 53.7         |
+| Junction Temperature (C) | 71.3         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,15 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| CLB Logic      |     0.060 |       22 |       --- |             --- |
-|   LUT as Logic |     0.055 |        8 |    230400 |           <0.01 |
-|   Register     |     0.004 |        8 |    460800 |           <0.01 |
+| CLB Logic      |     0.537 |      142 |       --- |             --- |
+|   LUT as Logic |     0.470 |       87 |    230400 |            0.04 |
+|   CARRY8       |     0.036 |        4 |     28800 |            0.01 |
+|   Register     |     0.031 |       40 |    460800 |           <0.01 |
 |   BUFG         |    <0.001 |        1 |        64 |            1.56 |
-|   Others       |     0.000 |        2 |       --- |             --- |
-| Signals        |     0.107 |       25 |       --- |             --- |
-| I/O            |     4.274 |       62 |       360 |           17.22 |
-| Static Power   |     0.616 |          |           |                 |
-| Total          |     5.058 |          |           |                 |
+|   Others       |     0.000 |        7 |       --- |             --- |
+| Signals        |     1.483 |      171 |       --- |             --- |
+| DSPs           |     0.407 |        1 |      1728 |            0.06 |
+| I/O            |    43.599 |       94 |       360 |           26.11 |
+| Static Power   |     1.225 |          |           |                 |
+| Total          |    47.250 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,21 +72,21 @@ Table of Contents
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source          | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint          |       0.850 |     0.408 |       0.245 |      0.162 |       NA    | Unspecified | NA         |
-| Vccint_io       |       0.850 |     0.071 |       0.000 |      0.071 |       NA    | Unspecified | NA         |
-| Vccbram         |       0.850 |     0.002 |       0.000 |      0.002 |       NA    | Unspecified | NA         |
-| Vccaux          |       1.800 |     0.147 |       0.000 |      0.147 |       NA    | Unspecified | NA         |
-| Vccaux_io       |       1.800 |     0.609 |       0.554 |      0.055 |       NA    | Unspecified | NA         |
+| Vccint          |       0.850 |     3.608 |       2.855 |      0.752 |       NA    | Unspecified | NA         |
+| Vccint_io       |       0.850 |     2.219 |       2.122 |      0.097 |       NA    | Unspecified | NA         |
+| Vccbram         |       0.850 |     0.010 |       0.000 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux          |       1.800 |     0.151 |       0.000 |      0.151 |       NA    | Unspecified | NA         |
+| Vccaux_io       |       1.800 |     5.130 |       5.075 |      0.055 |       NA    | Unspecified | NA         |
 | Vcco33          |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25          |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18          |       1.800 |     1.798 |       1.798 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18          |       1.800 |    18.145 |      18.144 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15          |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135         |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12          |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco10          |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc          |       1.800 |     0.008 |       0.000 |      0.008 |       NA    | Unspecified | NA         |
 | VCC_PSINTFP     |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| VCC_PSINTLP     |       0.850 |     0.006 |       0.000 |      0.006 |       NA    | Unspecified | NA         |
+| VCC_PSINTLP     |       0.850 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
 | VPS_MGTRAVCC    |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCC_PSINTFP_DDR |       0.850 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCC_PSPLL       |       1.200 |     0.002 |       0.000 |      0.002 |       NA    | Unspecified | NA         |
@@ -98,7 +100,7 @@ Table of Contents
 | VCCO_PSIO2_502  |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCCO_PSIO3_503  |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | VCC_PSADC       |       1.800 |     0.002 |       0.000 |      0.002 |       NA    | Unspecified | NA         |
-| VCCINT_VCU      |       0.900 |     0.028 |       0.000 |      0.028 |       NA    | Unspecified | NA         |
+| VCCINT_VCU      |       0.900 |     0.094 |       0.000 |      0.094 |       NA    | Unspecified | NA         |
 | MGTAVcc         |       0.900 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt         |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux       |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -153,23 +155,56 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------------+-----------+
-| Name                  | Power (W) |
-+-----------------------+-----------+
-| processor             |     4.441 |
-|   clk_IBUF_inst       |     0.004 |
-|   instr_IBUF[0]_inst  |     0.010 |
-|   instr_IBUF[10]_inst |     0.006 |
-|   instr_IBUF[1]_inst  |     0.010 |
-|   instr_IBUF[2]_inst  |     0.010 |
-|   instr_IBUF[3]_inst  |     0.010 |
-|   instr_IBUF[4]_inst  |     0.010 |
-|   instr_IBUF[5]_inst  |     0.010 |
-|   instr_IBUF[6]_inst  |     0.010 |
-|   instr_IBUF[7]_inst  |     0.010 |
-|   instr_IBUF[8]_inst  |     0.007 |
-|   instr_IBUF[9]_inst  |     0.006 |
-|   pc                  |     0.107 |
-+-----------------------+-----------+
++-----------------------------+-----------+
+| Name                        | Power (W) |
++-----------------------------+-----------+
+| processor                   |    46.026 |
+|   alu                       |     1.033 |
+|   clk_IBUF_inst             |     0.006 |
+|   instr_IBUF[0]_inst        |     0.012 |
+|   instr_IBUF[10]_inst       |     0.017 |
+|   instr_IBUF[1]_inst        |     0.016 |
+|   instr_IBUF[2]_inst        |     0.013 |
+|   instr_IBUF[3]_inst        |     0.012 |
+|   instr_IBUF[4]_inst        |     0.013 |
+|   instr_IBUF[5]_inst        |     0.012 |
+|   instr_IBUF[6]_inst        |     0.017 |
+|   instr_IBUF[7]_inst        |     0.015 |
+|   instr_IBUF[8]_inst        |     0.017 |
+|   instr_IBUF[9]_inst        |     0.018 |
+|   mem_data_in_IBUF[0]_inst  |     0.013 |
+|   mem_data_in_IBUF[10]_inst |     0.013 |
+|   mem_data_in_IBUF[11]_inst |     0.012 |
+|   mem_data_in_IBUF[12]_inst |     0.012 |
+|   mem_data_in_IBUF[13]_inst |     0.012 |
+|   mem_data_in_IBUF[14]_inst |     0.012 |
+|   mem_data_in_IBUF[15]_inst |     0.016 |
+|   mem_data_in_IBUF[16]_inst |     0.011 |
+|   mem_data_in_IBUF[17]_inst |     0.011 |
+|   mem_data_in_IBUF[18]_inst |     0.015 |
+|   mem_data_in_IBUF[19]_inst |     0.010 |
+|   mem_data_in_IBUF[1]_inst  |     0.014 |
+|   mem_data_in_IBUF[20]_inst |     0.010 |
+|   mem_data_in_IBUF[21]_inst |     0.010 |
+|   mem_data_in_IBUF[22]_inst |     0.010 |
+|   mem_data_in_IBUF[23]_inst |     0.013 |
+|   mem_data_in_IBUF[24]_inst |     0.010 |
+|   mem_data_in_IBUF[25]_inst |     0.009 |
+|   mem_data_in_IBUF[26]_inst |     0.009 |
+|   mem_data_in_IBUF[27]_inst |     0.009 |
+|   mem_data_in_IBUF[28]_inst |     0.009 |
+|   mem_data_in_IBUF[29]_inst |     0.009 |
+|   mem_data_in_IBUF[2]_inst  |     0.013 |
+|   mem_data_in_IBUF[30]_inst |     0.009 |
+|   mem_data_in_IBUF[31]_inst |     0.009 |
+|   mem_data_in_IBUF[3]_inst  |     0.013 |
+|   mem_data_in_IBUF[4]_inst  |     0.014 |
+|   mem_data_in_IBUF[5]_inst  |     0.017 |
+|   mem_data_in_IBUF[6]_inst  |     0.013 |
+|   mem_data_in_IBUF[7]_inst  |     0.012 |
+|   mem_data_in_IBUF[8]_inst  |     0.012 |
+|   mem_data_in_IBUF[9]_inst  |     0.013 |
+|   pc                        |     0.263 |
++-----------------------------+-----------+
 
 

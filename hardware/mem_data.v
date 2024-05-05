@@ -13,12 +13,12 @@ reg [31:0] mem [255:0];
 
 initial $readmemb("./data.mif", mem);
 
-always @ (*) begin
-	data_out <= mem[addr];
+always @ (posedge clk) begin
+	if (wr)	mem[addr] <= data_in;
 end
 
-always @ (posedge clk) begin
-	if (wr) mem[addr] <= data_in;
+always @ (*) begin
+	data_out <= mem[addr];
 end
 
 endmodule 

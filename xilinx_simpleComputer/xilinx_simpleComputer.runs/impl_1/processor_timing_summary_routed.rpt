@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date              : Sat Apr  6 23:46:12 2024
+| Date              : Sun May  5 19:53:57 2024
 | Host              : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command           : report_timing_summary -max_paths 10 -report_unconstrained -file processor_timing_summary_routed.rpt -pb processor_timing_summary_routed.pb -rpx processor_timing_summary_routed.rpx -warn_on_violation
 | Design            : processor
@@ -44,7 +44,8 @@ Timing Summary Report
 
 Rule       Severity          Description                  Violations  
 ---------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  8           
+TIMING-17  Critical Warning  Non-clocked sequential cell  40          
+DPIR-2     Warning           Asynchronous driver check    18          
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -54,12 +55,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (8)
+1. checking no_clock (40)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (24)
-5. checking no_input_delay (4)
-6. checking no_output_delay (8)
+4. checking unconstrained_internal_endpoints (80)
+5. checking no_input_delay (44)
+6. checking no_output_delay (40)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -67,9 +68,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (8)
-------------------------
- There are 8 register/latch pins with no clock driven by root clock pin: clk (HIGH)
+1. checking no_clock (40)
+-------------------------
+ There are 40 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
 
 2. checking constant_clock (0)
@@ -82,23 +83,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (24)
+4. checking unconstrained_internal_endpoints (80)
 -------------------------------------------------
- There are 24 pins that are not constrained for maximum delay. (HIGH)
+ There are 80 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (4)
-------------------------------
- There are 4 input ports with no input delay specified. (HIGH)
+5. checking no_input_delay (44)
+-------------------------------
+ There are 44 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (8)
--------------------------------
- There are 8 ports with no output delay specified. (HIGH)
+6. checking no_output_delay (40)
+--------------------------------
+ There are 40 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -143,7 +144,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                   41          inf        0.000                      0                   41           NA           NA                      NA                    NA  
+        inf        0.000                      0                  129          inf        0.000                      0                  129           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -212,270 +213,441 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay            41 Endpoints
-Min Delay            41 Endpoints
+Max Delay           129 Endpoints
+Min Delay           129 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 instr[0]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[0]
-                            (output port)
+  Destination:            acc_reg[29]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.805ns  (logic 3.326ns (69.219%)  route 1.479ns (30.781%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.553ns  (logic 2.206ns (48.461%)  route 2.347ns (51.539%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    F6                                                0.000     0.000 r  instr[0] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[0]_inst/I
-    F6                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      1.033     1.033 r  instr_IBUF[0]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.033    instr_IBUF[0]_inst/OUT
-    F6                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     1.033 r  instr_IBUF[0]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.479     2.512    mem_addr_OBUF[0]
-    H8                   OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.293     4.805 r  mem_addr_OBUF[0]_inst/O
-                         net (fo=0)                   0.000     4.805    mem_addr[0]
-    H8                                                                r  mem_addr[0] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[26])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[26]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<26>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[26]_U_DATA[26])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[26]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<26>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[26]_ALU_OUT[29])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[29]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<29>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[29]_P[29])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[29]
+                         net (fo=1, routed)           0.444     4.358    alu/mul__0[29]
+    SLICE_X68Y308        LUT6 (Prop_D6LUT_SLICEL_I0_O)
+                                                      0.146     4.504 r  alu/acc[29]_i_1/O
+                         net (fo=1, routed)           0.049     4.553    alu_out[29]
+    SLICE_X68Y308        FDCE                                         r  acc_reg[29]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[8]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_wr
-                            (output port)
+  Destination:            acc_reg[27]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.802ns  (logic 3.526ns (73.427%)  route 1.276ns (26.573%))
-  Logic Levels:           4  (IBUFCTRL=1 INBUF=1 LUT2=1 OBUF=1)
+  Data Path Delay:        4.522ns  (logic 2.210ns (48.882%)  route 2.312ns (51.118%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    D4                                                0.000     0.000 r  instr[8] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[8]_inst/I
-    D4                   INBUF (Prop_INBUF_HDIOB_S_PAD_O)
-                                                      1.041     1.041 r  instr_IBUF[8]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.041    instr_IBUF[8]_inst/OUT
-    D4                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_S_I_O)
-                                                      0.000     1.041 r  instr_IBUF[8]_inst/IBUFCTRL_INST/O
-                         net (fo=2, routed)           0.684     1.724    instr_IBUF[8]
-    SLICE_X99Y323        LUT2 (Prop_F6LUT_SLICEL_I0_O)
-                                                      0.123     1.847 r  mem_wr_OBUF_inst_i_1/O
-                         net (fo=1, routed)           0.592     2.439    mem_wr_OBUF
-    B1                   OBUF (Prop_OUTBUF_HDIOB_S_I_O)
-                                                      2.362     4.802 r  mem_wr_OBUF_inst/O
-                         net (fo=0)                   0.000     4.802    mem_wr
-    B1                                                                r  mem_wr (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[26])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[26]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<26>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[26]_U_DATA[26])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[26]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<26>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[26]_ALU_OUT[27])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[27]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<27>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[27]_P[27])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[27]
+                         net (fo=1, routed)           0.399     4.313    alu/mul__0[27]
+    SLICE_X67Y309        LUT6 (Prop_G6LUT_SLICEM_I0_O)
+                                                      0.150     4.463 r  alu/acc[27]_i_1/O
+                         net (fo=1, routed)           0.059     4.522    alu_out[27]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[27]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[4]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[4]
-                            (output port)
+  Destination:            acc_reg[16]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.795ns  (logic 3.360ns (70.075%)  route 1.435ns (29.925%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.493ns  (logic 2.206ns (49.108%)  route 2.287ns (50.892%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    B5                                                0.000     0.000 r  instr[4] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[4]_inst/I
-    B5                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      1.054     1.054 r  instr_IBUF[4]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.054    instr_IBUF[4]_inst/OUT
-    B5                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     1.054 r  instr_IBUF[4]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.435     2.489    mem_addr_OBUF[4]
-    H6                   OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.306     4.795 r  mem_addr_OBUF[4]_inst/O
-                         net (fo=0)                   0.000     4.795    mem_addr[4]
-    H6                                                                r  mem_addr[4] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[16])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[16]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<16>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[16]_U_DATA[16])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[16]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<16>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[16]_ALU_OUT[16])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[16]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<16>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[16]_P[16])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[16]
+                         net (fo=1, routed)           0.384     4.298    alu/mul__0[16]
+    SLICE_X66Y307        LUT6 (Prop_D6LUT_SLICEL_I0_O)
+                                                      0.146     4.444 r  alu/acc[16]_i_1/O
+                         net (fo=1, routed)           0.049     4.493    alu_out[16]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[16]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[2]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[2]
-                            (output port)
+  Destination:            acc_reg[30]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.791ns  (logic 3.339ns (69.695%)  route 1.452ns (30.305%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.478ns  (logic 2.185ns (48.804%)  route 2.293ns (51.196%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    D6                                                0.000     0.000 r  instr[2] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[2]_inst/I
-    D6                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      1.038     1.038 r  instr_IBUF[2]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.038    instr_IBUF[2]_inst/OUT
-    D6                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     1.038 r  instr_IBUF[2]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.452     2.490    mem_addr_OBUF[2]
-    H7                   OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.301     4.791 r  mem_addr_OBUF[2]_inst/O
-                         net (fo=0)                   0.000     4.791    mem_addr[2]
-    H7                                                                r  mem_addr[2] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[26])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[26]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<26>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[26]_U_DATA[26])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[26]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<26>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[26]_ALU_OUT[30])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[30]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<30>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[30]_P[30])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[30]
+                         net (fo=1, routed)           0.380     4.294    alu/mul__0[30]
+    SLICE_X67Y309        LUT6 (Prop_B6LUT_SLICEM_I0_O)
+                                                      0.125     4.419 r  alu/acc[30]_i_1/O
+                         net (fo=1, routed)           0.059     4.478    alu_out[30]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[30]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[5]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[5]
-                            (output port)
+  Destination:            acc_reg[21]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.772ns  (logic 3.371ns (70.642%)  route 1.401ns (29.358%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.474ns  (logic 2.183ns (48.803%)  route 2.291ns (51.197%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    A5                                                0.000     0.000 r  instr[5] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[5]_inst/I
-    A5                   INBUF (Prop_INBUF_HDIOB_S_PAD_O)
-                                                      1.059     1.059 r  instr_IBUF[5]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.059    instr_IBUF[5]_inst/OUT
-    A5                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_S_I_O)
-                                                      0.000     1.059 r  instr_IBUF[5]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.401     2.460    mem_addr_OBUF[5]
-    G6                   OBUF (Prop_OUTBUF_HDIOB_S_I_O)
-                                                      2.313     4.772 r  mem_addr_OBUF[5]_inst/O
-                         net (fo=0)                   0.000     4.772    mem_addr[5]
-    G6                                                                r  mem_addr[5] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[21])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[21]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<21>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[21]_U_DATA[21])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[21]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<21>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[21]_ALU_OUT[21])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[21]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<21>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[21]_P[21])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[21]
+                         net (fo=1, routed)           0.389     4.303    alu/mul__0[21]
+    SLICE_X66Y307        LUT6 (Prop_G6LUT_SLICEL_I0_O)
+                                                      0.123     4.426 r  alu/acc[21]_i_1/O
+                         net (fo=1, routed)           0.048     4.474    alu_out[21]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[21]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[6]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[6]
-                            (output port)
+  Destination:            acc_reg[11]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.769ns  (logic 3.335ns (69.929%)  route 1.434ns (30.071%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.446ns  (logic 2.206ns (49.628%)  route 2.240ns (50.372%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    F5                                                0.000     0.000 r  instr[6] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[6]_inst/I
-    F5                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      1.032     1.032 r  instr_IBUF[6]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.032    instr_IBUF[6]_inst/OUT
-    F5                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     1.032 r  instr_IBUF[6]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.434     2.466    mem_addr_OBUF[6]
-    J7                   OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.302     4.769 r  mem_addr_OBUF[6]_inst/O
-                         net (fo=0)                   0.000     4.769    mem_addr[6]
-    J7                                                                r  mem_addr[6] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[11])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[11]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<11>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[11]_U_DATA[11])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[11]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<11>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[11]_ALU_OUT[11])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[11]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<11>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[11]_P[11])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[11]
+                         net (fo=1, routed)           0.337     4.251    alu/mul__0[11]
+    SLICE_X68Y306        LUT6 (Prop_D6LUT_SLICEL_I0_O)
+                                                      0.146     4.397 r  alu/acc[11]_i_1/O
+                         net (fo=1, routed)           0.049     4.446    alu_out[11]
+    SLICE_X68Y306        FDCE                                         r  acc_reg[11]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[3]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[3]
-                            (output port)
+  Destination:            acc_reg[24]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.739ns  (logic 3.338ns (70.440%)  route 1.401ns (29.560%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.432ns  (logic 2.185ns (49.311%)  route 2.247ns (50.689%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    D5                                                0.000     0.000 r  instr[3] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[3]_inst/I
-    D5                   INBUF (Prop_INBUF_HDIOB_S_PAD_O)
-                                                      1.036     1.036 r  instr_IBUF[3]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.036    instr_IBUF[3]_inst/OUT
-    D5                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_S_I_O)
-                                                      0.000     1.036 r  instr_IBUF[3]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.401     2.437    mem_addr_OBUF[3]
-    G7                   OBUF (Prop_OUTBUF_HDIOB_S_I_O)
-                                                      2.303     4.739 r  mem_addr_OBUF[3]_inst/O
-                         net (fo=0)                   0.000     4.739    mem_addr[3]
-    G7                                                                r  mem_addr[3] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[24])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[24]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<24>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[24]_U_DATA[24])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[24]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<24>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[24]_ALU_OUT[24])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[24]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<24>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[24]_P[24])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[24]
+                         net (fo=1, routed)           0.335     4.249    alu/mul__0[24]
+    SLICE_X67Y309        LUT6 (Prop_H6LUT_SLICEM_I0_O)
+                                                      0.125     4.374 r  alu/acc[24]_i_1/O
+                         net (fo=1, routed)           0.058     4.432    alu_out[24]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[24]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[7]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[7]
-                            (output port)
+  Destination:            acc_reg[19]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.734ns  (logic 3.337ns (70.488%)  route 1.397ns (29.512%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.425ns  (logic 2.150ns (48.598%)  route 2.275ns (51.402%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    F4                                                0.000     0.000 r  instr[7] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[7]_inst/I
-    F4                   INBUF (Prop_INBUF_HDIOB_S_PAD_O)
-                                                      1.034     1.034 r  instr_IBUF[7]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.034    instr_IBUF[7]_inst/OUT
-    F4                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_S_I_O)
-                                                      0.000     1.034 r  instr_IBUF[7]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.397     2.431    mem_addr_OBUF[7]
-    J6                   OBUF (Prop_OUTBUF_HDIOB_S_I_O)
-                                                      2.303     4.734 r  mem_addr_OBUF[7]_inst/O
-                         net (fo=0)                   0.000     4.734    mem_addr[7]
-    J6                                                                r  mem_addr[7] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[19])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[19]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<19>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[19]_U_DATA[19])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[19]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<19>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[19]_ALU_OUT[19])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[19]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<19>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[19]_P[19])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[19]
+                         net (fo=1, routed)           0.373     4.287    alu/mul__0[19]
+    SLICE_X66Y307        LUT6 (Prop_A6LUT_SLICEL_I0_O)
+                                                      0.090     4.377 r  alu/acc[19]_i_1/O
+                         net (fo=1, routed)           0.048     4.425    alu_out[19]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[19]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 instr[1]
+  Source:                 mem_data_in[5]
                             (input port)
-  Destination:            mem_addr[1]
-                            (output port)
+  Destination:            acc_reg[31]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.672ns  (logic 3.331ns (71.294%)  route 1.341ns (28.706%))
-  Logic Levels:           3  (IBUFCTRL=1 INBUF=1 OBUF=1)
+  Data Path Delay:        4.423ns  (logic 2.150ns (48.620%)  route 2.273ns (51.380%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    E5                                                0.000     0.000 r  instr[1] (IN)
-                         net (fo=0)                   0.000     0.000    instr_IBUF[1]_inst/I
-    E5                   INBUF (Prop_INBUF_HDIOB_S_PAD_O)
-                                                      1.034     1.034 r  instr_IBUF[1]_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     1.034    instr_IBUF[1]_inst/OUT
-    E5                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_S_I_O)
-                                                      0.000     1.034 r  instr_IBUF[1]_inst/IBUFCTRL_INST/O
-                         net (fo=1, routed)           1.341     2.375    mem_addr_OBUF[1]
-    G8                   OBUF (Prop_OUTBUF_HDIOB_S_I_O)
-                                                      2.297     4.672 r  mem_addr_OBUF[1]_inst/O
-                         net (fo=0)                   0.000     4.672    mem_addr[1]
-    G8                                                                r  mem_addr[1] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[26])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[26]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<26>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[26]_U_DATA[26])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[26]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<26>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[26]_ALU_OUT[31])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<31>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[31]_P[31])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[31]
+                         net (fo=1, routed)           0.366     4.280    alu/mul__0[31]
+    SLICE_X67Y309        LUT6 (Prop_A6LUT_SLICEM_I0_O)
+                                                      0.090     4.370 r  alu/acc[31]_i_1/O
+                         net (fo=1, routed)           0.053     4.423    alu_out[31]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[31]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[5]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            instr_addr[5]
-                            (output port)
+  Source:                 mem_data_in[5]
+                            (input port)
+  Destination:            acc_reg[6]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        3.621ns  (logic 2.451ns (67.698%)  route 1.170ns (32.302%))
-  Logic Levels:           2  (FDCE=1 OBUF=1)
+  Data Path Delay:        4.415ns  (logic 2.183ns (49.455%)  route 2.232ns (50.545%))
+  Logic Levels:           9  (DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 IBUFCTRL=1 INBUF=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[5]/C
-    SLICE_X99Y323        FDCE (Prop_BFF_SLICEL_C_Q)
-                                                      0.079     0.079 r  pc/cnt_reg[5]/Q
-                         net (fo=3, routed)           1.170     1.249    instr_addr_OBUF[5]
-    A3                   OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.372     3.621 r  instr_addr_OBUF[5]_inst/O
-                         net (fo=0)                   0.000     3.621    instr_addr[5]
-    A3                                                                r  instr_addr[5] (OUT)
+    A10                                               0.000     0.000 f  mem_data_in[5] (IN)
+                         net (fo=0)                   0.000     0.000    mem_data_in_IBUF[5]_inst/I
+    A10                  INBUF (Prop_INBUF_HPIOB_S_PAD_O)
+                                                      0.546     0.546 f  mem_data_in_IBUF[5]_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.546    mem_data_in_IBUF[5]_inst/OUT
+    A10                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_S_I_O)
+                                                      0.000     0.546 f  mem_data_in_IBUF[5]_inst/IBUFCTRL_INST/O
+                         net (fo=4, routed)           1.854     2.400    alu/mul/A[5]
+    DSP48E2_X7Y122       DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[5]_A2_DATA[5])
+                                                      0.192     2.592 r  alu/mul/DSP_A_B_DATA_INST/A2_DATA[5]
+                         net (fo=1, routed)           0.000     2.592    alu/mul/DSP_A_B_DATA.A2_DATA<5>
+    DSP48E2_X7Y122       DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[5]_A2A1[5])
+                                                      0.076     2.668 r  alu/mul/DSP_PREADD_DATA_INST/A2A1[5]
+                         net (fo=1, routed)           0.000     2.668    alu/mul/DSP_PREADD_DATA.A2A1<5>
+    DSP48E2_X7Y122       DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[5]_U[6])
+                                                      0.505     3.173 f  alu/mul/DSP_MULTIPLIER_INST/U[6]
+                         net (fo=1, routed)           0.000     3.173    alu/mul/DSP_MULTIPLIER.U<6>
+    DSP48E2_X7Y122       DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_U[6]_U_DATA[6])
+                                                      0.047     3.220 r  alu/mul/DSP_M_DATA_INST/U_DATA[6]
+                         net (fo=1, routed)           0.000     3.220    alu/mul/DSP_M_DATA.U_DATA<6>
+    DSP48E2_X7Y122       DSP_ALU (Prop_DSP_ALU_DSP48E2_U_DATA[6]_ALU_OUT[6])
+                                                      0.585     3.805 f  alu/mul/DSP_ALU_INST/ALU_OUT[6]
+                         net (fo=1, routed)           0.000     3.805    alu/mul/DSP_ALU.ALU_OUT<6>
+    DSP48E2_X7Y122       DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[6]_P[6])
+                                                      0.109     3.914 r  alu/mul/DSP_OUTPUT_INST/P[6]
+                         net (fo=1, routed)           0.328     4.242    alu/mul__0[6]
+    SLICE_X68Y305        LUT6 (Prop_C6LUT_SLICEL_I0_O)
+                                                      0.123     4.365 r  alu/acc[6]_i_1/O
+                         net (fo=1, routed)           0.050     4.415    alu_out[6]
+    SLICE_X68Y305        FDCE                                         r  acc_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -485,215 +657,213 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 pc/cnt_reg[1]/C
+  Source:                 acc_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[2]/D
+  Destination:            acc_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.105ns  (logic 0.072ns (68.779%)  route 0.033ns (31.221%))
-  Logic Levels:           2  (FDCE=1 LUT3=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X100Y323       FDCE                         0.000     0.000 r  pc/cnt_reg[1]/C
-    SLICE_X100Y323       FDCE (Prop_DFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[1]/Q
-                         net (fo=7, routed)           0.027     0.066    pc/Q[1]
-    SLICE_X100Y323       LUT3 (Prop_D5LUT_SLICEL_I1_O)
-                                                      0.033     0.099 r  pc/cnt[2]_i_1/O
-                         net (fo=1, routed)           0.006     0.105    pc/p_0_in[2]
-    SLICE_X100Y323       FDCE                                         r  pc/cnt_reg[2]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 pc/cnt_reg[5]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[5]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.106ns  (logic 0.062ns (58.614%)  route 0.044ns (41.386%))
+  Data Path Delay:        0.099ns  (logic 0.053ns (53.338%)  route 0.046ns (46.662%))
   Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[5]/C
-    SLICE_X99Y323        FDCE (Prop_BFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[5]/Q
-                         net (fo=3, routed)           0.029     0.068    pc/Q[5]
-    SLICE_X99Y323        LUT6 (Prop_B6LUT_SLICEL_I5_O)
-                                                      0.023     0.091 r  pc/cnt[5]_i_1/O
-                         net (fo=1, routed)           0.015     0.106    pc/p_0_in[5]
-    SLICE_X99Y323        FDCE                                         r  pc/cnt_reg[5]/D
+    SLICE_X69Y305        FDCE                         0.000     0.000 r  acc_reg[0]/C
+    SLICE_X69Y305        FDCE (Prop_DFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[0]/Q
+                         net (fo=5, routed)           0.030     0.069    alu/Q[0]
+    SLICE_X69Y305        LUT6 (Prop_D6LUT_SLICEL_I5_O)
+                                                      0.014     0.083 r  alu/acc[0]_i_1/O
+                         net (fo=1, routed)           0.016     0.099    alu_out[0]
+    SLICE_X69Y305        FDCE                                         r  acc_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[3]/C
+  Source:                 acc_reg[10]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[4]/D
+  Destination:            acc_reg[10]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.110ns  (logic 0.072ns (65.327%)  route 0.038ns (34.673%))
-  Logic Levels:           2  (FDCE=1 LUT5=1)
+  Data Path Delay:        0.099ns  (logic 0.053ns (53.338%)  route 0.046ns (46.662%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[3]/C
-    SLICE_X99Y323        FDCE (Prop_DFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[3]/Q
-                         net (fo=5, routed)           0.032     0.071    pc/Q[3]
-    SLICE_X99Y323        LUT5 (Prop_D5LUT_SLICEL_I3_O)
-                                                      0.033     0.104 r  pc/cnt[4]_i_1/O
-                         net (fo=1, routed)           0.006     0.110    pc/p_0_in[4]
-    SLICE_X99Y323        FDCE                                         r  pc/cnt_reg[4]/D
+    SLICE_X66Y306        FDCE                         0.000     0.000 r  acc_reg[10]/C
+    SLICE_X66Y306        FDCE (Prop_DFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[10]/Q
+                         net (fo=5, routed)           0.030     0.069    alu/Q[10]
+    SLICE_X66Y306        LUT6 (Prop_D6LUT_SLICEL_I5_O)
+                                                      0.014     0.083 r  alu/acc[10]_i_1/O
+                         net (fo=1, routed)           0.016     0.099    alu_out[10]
+    SLICE_X66Y306        FDCE                                         r  acc_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[1]/C
+  Source:                 acc_reg[16]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[1]/D
+  Destination:            acc_reg[16]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.117ns  (logic 0.074ns (63.420%)  route 0.043ns (36.580%))
-  Logic Levels:           2  (FDCE=1 LUT2=1)
+  Data Path Delay:        0.099ns  (logic 0.053ns (53.338%)  route 0.046ns (46.662%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X100Y323       FDCE                         0.000     0.000 r  pc/cnt_reg[1]/C
-    SLICE_X100Y323       FDCE (Prop_DFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[1]/Q
-                         net (fo=7, routed)           0.027     0.066    pc/Q[1]
-    SLICE_X100Y323       LUT2 (Prop_D6LUT_SLICEL_I1_O)
-                                                      0.035     0.101 r  pc/cnt[1]_i_1/O
-                         net (fo=1, routed)           0.016     0.117    pc/p_0_in[1]
-    SLICE_X100Y323       FDCE                                         r  pc/cnt_reg[1]/D
+    SLICE_X66Y307        FDCE                         0.000     0.000 r  acc_reg[16]/C
+    SLICE_X66Y307        FDCE (Prop_DFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[16]/Q
+                         net (fo=4, routed)           0.030     0.069    alu/Q[16]
+    SLICE_X66Y307        LUT6 (Prop_D6LUT_SLICEL_I5_O)
+                                                      0.014     0.083 r  alu/acc[16]_i_1/O
+                         net (fo=1, routed)           0.016     0.099    alu_out[16]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[16]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[3]/C
+  Source:                 acc_reg[18]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[3]/D
+  Destination:            acc_reg[18]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.122ns  (logic 0.074ns (60.550%)  route 0.048ns (39.450%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.099ns  (logic 0.054ns (54.345%)  route 0.045ns (45.655%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[3]/C
-    SLICE_X99Y323        FDCE (Prop_DFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[3]/Q
-                         net (fo=5, routed)           0.032     0.071    pc/Q[3]
-    SLICE_X99Y323        LUT4 (Prop_D6LUT_SLICEL_I3_O)
-                                                      0.035     0.106 r  pc/cnt[3]_i_1/O
-                         net (fo=1, routed)           0.016     0.122    pc/p_0_in[3]
-    SLICE_X99Y323        FDCE                                         r  pc/cnt_reg[3]/D
+    SLICE_X66Y307        FDCE                         0.000     0.000 r  acc_reg[18]/C
+    SLICE_X66Y307        FDCE (Prop_BFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[18]/Q
+                         net (fo=4, routed)           0.030     0.069    alu/Q[18]
+    SLICE_X66Y307        LUT6 (Prop_B6LUT_SLICEL_I5_O)
+                                                      0.015     0.084 r  alu/acc[18]_i_1/O
+                         net (fo=1, routed)           0.015     0.099    alu_out[18]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[18]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[7]/C
+  Source:                 acc_reg[23]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[7]/D
+  Destination:            acc_reg[23]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.142ns  (logic 0.078ns (55.052%)  route 0.064ns (44.948%))
-  Logic Levels:           2  (FDCE=1 LUT3=1)
+  Data Path Delay:        0.099ns  (logic 0.053ns (53.338%)  route 0.046ns (46.662%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[7]/C
-    SLICE_X99Y323        FDCE (Prop_CFF2_SLICEL_C_Q)
-                                                      0.040     0.040 r  pc/cnt_reg[7]/Q
-                         net (fo=2, routed)           0.058     0.098    pc/Q[7]
-    SLICE_X99Y323        LUT3 (Prop_C5LUT_SLICEL_I2_O)
-                                                      0.038     0.136 r  pc/cnt[7]_i_2/O
-                         net (fo=1, routed)           0.006     0.142    pc/p_0_in[7]
-    SLICE_X99Y323        FDCE                                         r  pc/cnt_reg[7]/D
+    SLICE_X68Y307        FDCE                         0.000     0.000 r  acc_reg[23]/C
+    SLICE_X68Y307        FDCE (Prop_DFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[23]/Q
+                         net (fo=4, routed)           0.030     0.069    alu/Q[23]
+    SLICE_X68Y307        LUT6 (Prop_D6LUT_SLICEL_I5_O)
+                                                      0.014     0.083 r  alu/acc[23]_i_1/O
+                         net (fo=1, routed)           0.016     0.099    alu_out[23]
+    SLICE_X68Y307        FDCE                                         r  acc_reg[23]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[0]/C
+  Source:                 acc_reg[22]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[0]/D
+  Destination:            acc_reg[22]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.162ns  (logic 0.071ns (43.718%)  route 0.091ns (56.282%))
-  Logic Levels:           2  (FDCE=1 LUT1=1)
+  Data Path Delay:        0.101ns  (logic 0.054ns (53.272%)  route 0.047ns (46.728%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X100Y323       FDCE                         0.000     0.000 r  pc/cnt_reg[0]/C
-    SLICE_X100Y323       FDCE (Prop_HFF2_SLICEL_C_Q)
-                                                      0.039     0.039 f  pc/cnt_reg[0]/Q
-                         net (fo=8, routed)           0.085     0.124    pc/Q[0]
-    SLICE_X100Y323       LUT1 (Prop_H5LUT_SLICEL_I0_O)
-                                                      0.032     0.156 r  pc/cnt[0]_i_1/O
-                         net (fo=1, routed)           0.006     0.162    pc/p_0_in[0]
-    SLICE_X100Y323       FDCE                                         r  pc/cnt_reg[0]/D
+    SLICE_X68Y307        FDCE                         0.000     0.000 r  acc_reg[22]/C
+    SLICE_X68Y307        FDCE (Prop_HFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[22]/Q
+                         net (fo=4, routed)           0.030     0.069    alu/Q[22]
+    SLICE_X68Y307        LUT6 (Prop_H6LUT_SLICEL_I5_O)
+                                                      0.015     0.084 r  alu/acc[22]_i_1/O
+                         net (fo=1, routed)           0.017     0.101    alu_out[22]
+    SLICE_X68Y307        FDCE                                         r  acc_reg[22]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 pc/cnt_reg[6]/C
+  Source:                 acc_reg[17]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            pc/cnt_reg[6]/D
+  Destination:            acc_reg[17]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.168ns  (logic 0.074ns (44.131%)  route 0.094ns (55.869%))
-  Logic Levels:           2  (FDCE=1 LUT2=1)
+  Data Path Delay:        0.101ns  (logic 0.053ns (52.286%)  route 0.048ns (47.714%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X99Y323        FDCE                         0.000     0.000 r  pc/cnt_reg[6]/C
-    SLICE_X99Y323        FDCE (Prop_CFF_SLICEL_C_Q)
-                                                      0.039     0.039 r  pc/cnt_reg[6]/Q
-                         net (fo=3, routed)           0.077     0.116    pc/Q[6]
-    SLICE_X99Y323        LUT2 (Prop_C6LUT_SLICEL_I1_O)
-                                                      0.035     0.151 r  pc/cnt[6]_i_1/O
-                         net (fo=1, routed)           0.017     0.168    pc/p_0_in[6]
-    SLICE_X99Y323        FDCE                                         r  pc/cnt_reg[6]/D
+    SLICE_X66Y307        FDCE                         0.000     0.000 r  acc_reg[17]/C
+    SLICE_X66Y307        FDCE (Prop_CFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[17]/Q
+                         net (fo=4, routed)           0.031     0.070    alu/Q[17]
+    SLICE_X66Y307        LUT6 (Prop_C6LUT_SLICEL_I5_O)
+                                                      0.014     0.084 r  alu/acc[17]_i_1/O
+                         net (fo=1, routed)           0.017     0.101    alu_out[17]
+    SLICE_X66Y307        FDCE                                         r  acc_reg[17]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rst
-                            (input port)
-  Destination:            pc/cnt_reg[3]/CLR
+  Source:                 acc_reg[1]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            acc_reg[1]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.662ns  (logic 0.396ns (59.772%)  route 0.266ns (40.228%))
-  Logic Levels:           2  (IBUFCTRL=1 INBUF=1)
+  Data Path Delay:        0.101ns  (logic 0.053ns (52.286%)  route 0.048ns (47.714%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C3                                                0.000     0.000 f  rst (IN)
-                         net (fo=0)                   0.000     0.000    rst_IBUF_inst/I
-    C3                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      0.396     0.396 f  rst_IBUF_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     0.396    rst_IBUF_inst/OUT
-    C3                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     0.396 f  rst_IBUF_inst/IBUFCTRL_INST/O
-                         net (fo=8, routed)           0.266     0.662    pc/AR[0]
-    SLICE_X99Y323        FDCE                                         f  pc/cnt_reg[3]/CLR
+    SLICE_X69Y305        FDCE                         0.000     0.000 r  acc_reg[1]/C
+    SLICE_X69Y305        FDCE (Prop_CFF_SLICEL_C_Q)
+                                                      0.039     0.039 r  acc_reg[1]/Q
+                         net (fo=5, routed)           0.031     0.070    alu/Q[1]
+    SLICE_X69Y305        LUT6 (Prop_C6LUT_SLICEL_I5_O)
+                                                      0.014     0.084 r  alu/acc[1]_i_1/O
+                         net (fo=1, routed)           0.017     0.101    alu_out[1]
+    SLICE_X69Y305        FDCE                                         r  acc_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rst
-                            (input port)
-  Destination:            pc/cnt_reg[4]/CLR
+  Source:                 acc_reg[30]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            acc_reg[30]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.662ns  (logic 0.396ns (59.772%)  route 0.266ns (40.228%))
-  Logic Levels:           2  (IBUFCTRL=1 INBUF=1)
+  Data Path Delay:        0.102ns  (logic 0.052ns (51.139%)  route 0.050ns (48.861%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C3                                                0.000     0.000 f  rst (IN)
-                         net (fo=0)                   0.000     0.000    rst_IBUF_inst/I
-    C3                   INBUF (Prop_INBUF_HDIOB_M_PAD_O)
-                                                      0.396     0.396 f  rst_IBUF_inst/INBUF_INST/O
-                         net (fo=1, routed)           0.000     0.396    rst_IBUF_inst/OUT
-    C3                   IBUFCTRL (Prop_IBUFCTRL_HDIOB_M_I_O)
-                                                      0.000     0.396 f  rst_IBUF_inst/IBUFCTRL_INST/O
-                         net (fo=8, routed)           0.266     0.662    pc/AR[0]
-    SLICE_X99Y323        FDCE                                         f  pc/cnt_reg[4]/CLR
+    SLICE_X67Y309        FDCE                         0.000     0.000 r  acc_reg[30]/C
+    SLICE_X67Y309        FDCE (Prop_BFF_SLICEM_C_Q)
+                                                      0.038     0.038 r  acc_reg[30]/Q
+                         net (fo=4, routed)           0.029     0.067    alu/Q[30]
+    SLICE_X67Y309        LUT6 (Prop_B6LUT_SLICEM_I5_O)
+                                                      0.014     0.081 r  alu/acc[30]_i_1/O
+                         net (fo=1, routed)           0.021     0.102    alu_out[30]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[30]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 acc_reg[24]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            acc_reg[24]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.107ns  (logic 0.054ns (50.617%)  route 0.053ns (49.383%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X67Y309        FDCE                         0.000     0.000 r  acc_reg[24]/C
+    SLICE_X67Y309        FDCE (Prop_HFF_SLICEM_C_Q)
+                                                      0.039     0.039 r  acc_reg[24]/Q
+                         net (fo=4, routed)           0.032     0.071    alu/Q[24]
+    SLICE_X67Y309        LUT6 (Prop_H6LUT_SLICEM_I5_O)
+                                                      0.015     0.086 r  alu/acc[24]_i_1/O
+                         net (fo=1, routed)           0.021     0.107    alu_out[24]
+    SLICE_X67Y309        FDCE                                         r  acc_reg[24]/D
   -------------------------------------------------------------------    -------------------
 
 
