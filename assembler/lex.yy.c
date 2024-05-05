@@ -559,7 +559,7 @@ char *yytext;
 #include "variables.h"
 #include "labels.h"
 
-#define NBITS_OPC 3                // #bits opcode
+#define NBITS_OPC 4                // #bits opcode
 #define NBITS_OPR 8                // #bits operand
 #define NBITS_DAT 32               // #bits data
 #define INSTR_WID pow(2,NBITS_OPR) // width instruction memory
