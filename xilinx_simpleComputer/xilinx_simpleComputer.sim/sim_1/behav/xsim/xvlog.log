@@ -1,4 +1,5 @@
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/hardware/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alumux
 INFO: [VRFC 10-311] analyzing module alu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/juan/github/simpleComputer/hardware/instr_decoder.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module instr_decoder

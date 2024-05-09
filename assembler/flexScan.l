@@ -17,6 +17,7 @@ int  pp    = 1; // pre-processor flag
 int  state = 0; // 0 -> search opcode, 1 -> search operand
 int  c_op;      // save current opcode
 
+char *itob(int x, int w);
 void pp_opcode(int   op);
 void pp_opernd(char *va, int is_const);
 void pp_label (char *la);
@@ -43,15 +44,15 @@ LINE        \n
 
 %%
 
-"NOP"       if (!pp) eval_opcode( 0); else pp_opcode( 0);
-"STOP"      if (!pp) eval_opcode( 1); else pp_opcode( 1);
-"LOAD"      if (!pp) eval_opcode( 2); else pp_opcode( 2);
-"SET"       if (!pp) eval_opcode( 3); else pp_opcode( 3);
-"ADD"       if (!pp) eval_opcode( 4); else pp_opcode( 4);
-"MULT"      if (!pp) eval_opcode( 5); else pp_opcode( 5);
-"JNZ"       if (!pp) eval_opcode( 5); else pp_opcode( 5);
-"JZ"        if (!pp) eval_opcode( 6); else pp_opcode( 6);
-"JMP"       if (!pp) eval_opcode( 7); else pp_opcode( 7);
+"NOP"     if (!pp) eval_opcode( 0); else pp_opcode( 0);
+"LOAD"    if (!pp) eval_opcode( 1); else pp_opcode( 1);
+"SET"     if (!pp) eval_opcode( 2); else pp_opcode( 2);
+"ADD"     if (!pp) eval_opcode( 3); else pp_opcode( 3);
+"MULT"    if (!pp) eval_opcode( 4); else pp_opcode( 4);
+"JNZ"     if (!pp) eval_opcode( 5); else pp_opcode( 5);
+"JZ"      if (!pp) eval_opcode( 6); else pp_opcode( 6);
+"JMP"     if (!pp) eval_opcode( 7); else pp_opcode( 7);
+
 
 {ADDRESS}   if (!pp) eval_opernd(yytext,1); else state = 0;
 {CONSTANT}  if (!pp) eval_opernd(yytext,0); else pp_opernd(yytext,1);
@@ -70,20 +71,25 @@ char *itob(int x, int w)
     char *b = (char *) malloc(w+1);
     b[0] = '\0';
 
-	int s = (w > 31) ? 31 : w;
-	if (w > 31)
-	for (z = 0; z < w-31; z++)
-		if (x < 0) strcat(b, "1"); else strcat(b, "0");
-    for (z = pow(2,s-1); z > 0; z >>= 1)
-		strcat(b, ((x & z) == z) ? "1" : "0");
+    int s = (w > 31) ? 31 : w;
+    if (w > 31)
+        for (z = 0; z < w-31; z++){
+            if (x < 0){
+                strcat(b, "1");
+            }else{
+                strcat(b, "0");
+            }
+        }
+    for (z = pow(2,s-1); z > 0; z >>= 1){
+        strcat(b, ((x & z) == z) ? "1" : "0");
+    }
 
     return b;
 }
 
 void pp_opcode(int op)
 {
-    if (state != 0)
-    {
+    if (state != 0){
         printf("ERROR: waiting opcode\n");
     }
 
@@ -91,6 +97,7 @@ void pp_opcode(int op)
 
     switch (op)
     {
+        case 1  : state = 1; break;
         case 2  : state = 1; break;
         case 3  : state = 1; break;
         case 4  : state = 1; break;
@@ -98,7 +105,7 @@ void pp_opcode(int op)
         case 6  : state = 2; break;
         case 7  : state = 2; break;
         default :            break;
-    }
+    }    
 }
 
 void pp_opernd(char *va, int is_const)
@@ -139,6 +146,7 @@ void eval_opcode(int op)
 
 	switch (op)
     {
+        case 1  : state = 1;       break;
         case 2  : state = 1;       break;
         case 3  : state = 1;       break;
         case 4  : state = 1;       break;
