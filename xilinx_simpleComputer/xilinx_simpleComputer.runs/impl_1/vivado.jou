@@ -3,12 +3,12 @@
 # SW Build 4126759 on Thu Feb  8 23:52:05 MST 2024
 # IP Build 4126054 on Fri Feb  9 11:39:09 MST 2024
 # SharedData Build 4115275 on Tue Jan 30 00:40:57 MST 2024
-# Start of session at: Sun May  5 19:52:36 2024
-# Process ID: 398829
+# Start of session at: Thu May  9 23:27:51 2024
+# Process ID: 951515
 # Current directory: /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1
 # Command line: vivado -log processor.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source processor.tcl -notrace
 # Log file: /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/processor.vdi
 # Journal file: /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/impl_1/vivado.jou
-# Running On: jubu, OS: Linux, CPU Frequency: 3668.799 MHz, CPU Physical cores: 24, Host memory: 67027 MB
+# Running On: jubu, OS: Linux, CPU Frequency: 1911.749 MHz, CPU Physical cores: 24, Host memory: 67027 MB
 #-----------------------------------------------------------
 source processor.tcl -notrace

@@ -12,11 +12,11 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="127.297 ns"></ZoomEndTime>
-      <Cursor1Time time="27.800 ns"></Cursor1Time>
+      <ZoomEndTime time="119.301 ns"></ZoomEndTime>
+      <Cursor1Time time="22.400 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="264"></NameColumnWidth>
+      <NameColumnWidth column_width="260"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="7" />
@@ -29,8 +29,9 @@
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_simpleProcessor/instr">
-      <obj_property name="ElementShortName">instr[10:0]</obj_property>
-      <obj_property name="ObjectShortName">instr[10:0]</obj_property>
+      <obj_property name="ElementShortName">instr[11:0]</obj_property>
+      <obj_property name="ObjectShortName">instr[11:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_simpleProcessor/instr_addr">
       <obj_property name="ElementShortName">instr_addr[7:0]</obj_property>
@@ -43,7 +44,7 @@
    <wvobject type="array" fp_name="/tb_simpleProcessor/mem_addr">
       <obj_property name="ElementShortName">mem_addr[7:0]</obj_property>
       <obj_property name="ObjectShortName">mem_addr[7:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_simpleProcessor/mem_data_in">
       <obj_property name="ElementShortName">mem_data_in[31:0]</obj_property>

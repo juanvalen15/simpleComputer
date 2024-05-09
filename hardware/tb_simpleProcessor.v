@@ -26,7 +26,7 @@ processor pc(.clk(clk), .rst(rst), .instr(instr), .instr_addr(instr_addr), .mem_
 mem_instr minstr(.clk(clk), .addr(instr_addr), .data(instr));
 
 // Data memory -----------------------------------------------------------
-mem_data mdata(.clk(clk), .wr(mem_wr), .addr(mem_addr), .data_in(reg_data_out), .data_out(mem_data_in));
+mem_data mdata(.clk(clk), .wr(mem_wr), .addr(mem_addr), .data_in(mem_data_out), .data_out(mem_data_in));
 
 
 endmodule 
