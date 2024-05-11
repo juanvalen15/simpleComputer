@@ -19,8 +19,12 @@ wire signed	[31:0] 	id_nzero = mem_data_out;
 wire    	[ 2:0] 	id_alu_op;
 wire    			id_pc_load;
 wire    			id_mem_wr;
+wire  				id_data_sp_push;
+wire  				id_data_sp_pop;	
 
-instr_decoder id(.opcode(instr[11:8]) , .acc(id_nzero), .alu_op(id_alu_op), .pc_load(id_pc_load), .mem_wr(id_mem_wr));
+instr_decoder id(.opcode(instr[11:8]) , .acc(id_nzero), .alu_op(id_alu_op), 
+				 .pc_load(id_pc_load), .mem_wr(id_mem_wr),
+				 .data_sp_push(id_data_sp_push), .data_sp_pop(id_data_sp_pop));
 
 // ALU ------------------------------------------------------------------------
 wire signed [31:0] alu_in1 = mem_data_in;
@@ -47,9 +51,19 @@ wire [7:0]  pc_data = instr[7:0];
 
 pc pc(.clk(clk), .rst(rst), .load(pc_load), .data(pc_data), .addr(instr_addr));
 
+// Data Stack Pointer ---------------------------------------------------------
+wire       data_sp_push = id_data_sp_push;
+wire       data_sp_pop  = id_data_sp_pop;
+wire [7:0] data_sp_addr;
+
+stack_pointer data_sp(.clk(clk), .rst(rst), 
+					  .push(data_sp_push), .pop(data_sp_pop), 
+					  .addr(data_sp_addr));
+
 // Data memory interface  -----------------------------------------------------
-assign mem_data_out = acc;
-assign mem_addr     = instr[7:0];
-assign mem_wr       = id_mem_wr;
+wire 	pup_pop 		= data_sp_push | data_sp_pop;
+assign 	mem_data_out 	= acc;
+assign 	mem_addr    	= (pup_pop) ? data_sp_addr : instr[7:0];
+assign 	mem_wr       	= id_mem_wr;
 
 endmodule 

@@ -74,7 +74,7 @@ set_param power.enableCarry8RouteBelPower 1
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 8
 set_param power.BramSDPPropagationFix 1
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-104749-jubu/incrSyn
+set_param synth.incrementalSynthesisCache ./.Xil/Vivado-148458-jubu/incrSyn
 set_param power.enableUnconnectedCarry8PinPower 1
 set_param power.enableLutRouteBelPower 1
 set_msg_config -id {Synth 8-256} -limit 10000
@@ -102,6 +102,7 @@ read_verilog -library xil_defaultlib {
   /home/juan/github/simpleComputer/hardware/alu.v
   /home/juan/github/simpleComputer/hardware/instr_decoder.v
   /home/juan/github/simpleComputer/hardware/pc.v
+  /home/juan/github/simpleComputer/hardware/stack_pointer.v
   /home/juan/github/simpleComputer/hardware/processor.v
 }
 OPTRACE "Adding files" END { }

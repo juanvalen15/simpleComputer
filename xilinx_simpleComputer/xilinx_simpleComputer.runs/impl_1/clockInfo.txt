@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2023.2.2
-| Date         : Thu May  9 23:28:14 2024
+| Date         : Sat May 11 15:50:05 2024
 | Host         : jubu
 | Design       : design_1
 | Device       : xczu7ev-ffvc1156-2-E-
@@ -28,7 +28,7 @@ Clock Net Route Info (CRP Input)
 ********************************
 Clock 1: clk_IBUF_BUFG
 	Clock source type: BUFGCE
-	Clock source region: X2Y5
+	Clock source region: X2Y4
 	initial rect ((2, 4), (2, 5))
 
 
