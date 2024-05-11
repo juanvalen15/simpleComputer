@@ -1,4 +1,16 @@
-        LOAD 10
-@sub1   ADD -1
-        JNZ sub1
-@fim    JMP fim
+                LOAD 1
+                PUSH
+                LOAD 3
+                PUSH
+                JMP addition
+@return         SET y
+@end            JMP end
+
+
+
+
+
+
+@addition       POP
+                SADD
+                JMP return

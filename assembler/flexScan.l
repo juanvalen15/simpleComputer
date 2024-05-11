@@ -52,6 +52,10 @@ LINE        \n
 "JNZ"     if (!pp) eval_opcode( 5); else pp_opcode( 5);
 "JZ"      if (!pp) eval_opcode( 6); else pp_opcode( 6);
 "JMP"     if (!pp) eval_opcode( 7); else pp_opcode( 7);
+"PUSH"    if (!pp) eval_opcode( 8); else pp_opcode( 8);
+"POP"     if (!pp) eval_opcode( 9); else pp_opcode( 9);
+"SADD"    if (!pp) eval_opcode(10); else pp_opcode(10);
+"SMLT"    if (!pp) eval_opcode(11); else pp_opcode(11);
 
 
 {ADDRESS}   if (!pp) eval_opernd(yytext,1); else state = 0;
