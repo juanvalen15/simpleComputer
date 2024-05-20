@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date              : Sat May 11 15:51:03 2024
+| Date              : Mon May 20 13:26:32 2024
 | Host              : jubu running 64-bit Ubuntu 22.04.4 LTS
 | Command           : report_timing_summary -max_paths 10 -report_unconstrained -file processor_timing_summary_routed.rpt -pb processor_timing_summary_routed.pb -rpx processor_timing_summary_routed.rpx -warn_on_violation
 | Design            : processor
@@ -294,7 +294,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.389     4.657    alu/mul__0[17]
     SLICE_X67Y304        LUT6 (Prop_H6LUT_SLICEM_I0_O)
                                                       0.125     4.782 r  alu/acc[17]_i_1/O
-                         net (fo=1, routed)           0.058     4.840    alu_out[17]
+                         net (fo=1, routed)           0.058     4.840    mux/out_mux[17]
     SLICE_X67Y304        FDCE                                         r  acc_reg[17]/D
   -------------------------------------------------------------------    -------------------
 
@@ -337,7 +337,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.383     4.651    alu/mul__0[28]
     SLICE_X67Y304        LUT6 (Prop_E6LUT_SLICEM_I0_O)
                                                       0.124     4.775 r  alu/acc[28]_i_1/O
-                         net (fo=1, routed)           0.055     4.830    alu_out[28]
+                         net (fo=1, routed)           0.055     4.830    mux/out_mux[28]
     SLICE_X67Y304        FDCE                                         r  acc_reg[28]/D
   -------------------------------------------------------------------    -------------------
 
@@ -380,7 +380,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.362     4.630    alu/mul__0[16]
     SLICE_X67Y304        LUT6 (Prop_D6LUT_SLICEM_I0_O)
                                                       0.122     4.752 r  alu/acc[16]_i_1/O
-                         net (fo=1, routed)           0.072     4.824    alu_out[16]
+                         net (fo=1, routed)           0.072     4.824    mux/out_mux[16]
     SLICE_X67Y304        FDCE                                         r  acc_reg[16]/D
   -------------------------------------------------------------------    -------------------
 
@@ -423,7 +423,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.374     4.642    alu/mul__0[25]
     SLICE_X67Y304        LUT6 (Prop_G6LUT_SLICEM_I0_O)
                                                       0.123     4.765 r  alu/acc[25]_i_1/O
-                         net (fo=1, routed)           0.059     4.824    alu_out[25]
+                         net (fo=1, routed)           0.059     4.824    mux/out_mux[25]
     SLICE_X67Y304        FDCE                                         r  acc_reg[25]/D
   -------------------------------------------------------------------    -------------------
 
@@ -466,7 +466,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.382     4.637    alu/mul__0[5]
     SLICE_X68Y300        LUT6 (Prop_B6LUT_SLICEL_I0_O)
                                                       0.124     4.761 r  alu/acc[5]_i_1/O
-                         net (fo=1, routed)           0.049     4.810    alu_out[5]
+                         net (fo=1, routed)           0.049     4.810    mux/out_mux[5]
     SLICE_X68Y300        FDCE                                         r  acc_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
@@ -509,7 +509,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.337     4.605    alu/mul__0[11]
     SLICE_X68Y301        LUT6 (Prop_D6LUT_SLICEL_I0_O)
                                                       0.146     4.751 r  alu/acc[11]_i_1/O
-                         net (fo=1, routed)           0.049     4.800    alu_out[11]
+                         net (fo=1, routed)           0.049     4.800    mux/out_mux[11]
     SLICE_X68Y301        FDCE                                         r  acc_reg[11]/D
   -------------------------------------------------------------------    -------------------
 
@@ -552,7 +552,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.379     4.647    alu/mul__0[21]
     SLICE_X68Y302        LUT6 (Prop_H6LUT_SLICEL_I0_O)
                                                       0.099     4.746 r  alu/acc[21]_i_1/O
-                         net (fo=1, routed)           0.051     4.797    alu_out[21]
+                         net (fo=1, routed)           0.051     4.797    mux/out_mux[21]
     SLICE_X68Y302        FDCE                                         r  acc_reg[21]/D
   -------------------------------------------------------------------    -------------------
 
@@ -595,7 +595,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.362     4.630    alu/mul__0[26]
     SLICE_X67Y304        LUT6 (Prop_F6LUT_SLICEM_I0_O)
                                                       0.088     4.718 r  alu/acc[26]_i_1/O
-                         net (fo=1, routed)           0.067     4.785    alu_out[26]
+                         net (fo=1, routed)           0.067     4.785    mux/out_mux[26]
     SLICE_X67Y304        FDCE                                         r  acc_reg[26]/D
   -------------------------------------------------------------------    -------------------
 
@@ -638,7 +638,7 @@ Slack:                    inf
                          net (fo=1, routed)           0.329     4.597    alu/mul__0[15]
     SLICE_X68Y301        LUT6 (Prop_G6LUT_SLICEL_I0_O)
                                                       0.123     4.720 r  alu/acc[15]_i_1/O
-                         net (fo=1, routed)           0.048     4.768    alu_out[15]
+                         net (fo=1, routed)           0.048     4.768    mux/out_mux[15]
     SLICE_X68Y301        FDCE                                         r  acc_reg[15]/D
   -------------------------------------------------------------------    -------------------
 
@@ -665,7 +665,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.027     0.066    alu/Q[7]
     SLICE_X68Y300        LUT6 (Prop_H6LUT_SLICEL_I5_O)
                                                       0.015     0.081 r  alu/acc[7]_i_1/O
-                         net (fo=1, routed)           0.017     0.098    alu_out[7]
+                         net (fo=1, routed)           0.017     0.098    mux/out_mux[7]
     SLICE_X68Y300        FDCE                                         r  acc_reg[7]/D
   -------------------------------------------------------------------    -------------------
 
@@ -686,7 +686,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.030     0.069    alu/Q[0]
     SLICE_X66Y300        LUT6 (Prop_D6LUT_SLICEL_I5_O)
                                                       0.014     0.083 r  alu/acc[0]_i_1/O
-                         net (fo=1, routed)           0.016     0.099    alu_out[0]
+                         net (fo=1, routed)           0.016     0.099    mux/out_mux[0]
     SLICE_X66Y300        FDCE                                         r  acc_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
@@ -707,7 +707,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.030     0.069    alu/Q[10]
     SLICE_X66Y301        LUT6 (Prop_D6LUT_SLICEL_I5_O)
                                                       0.014     0.083 r  alu/acc[10]_i_1/O
-                         net (fo=1, routed)           0.016     0.099    alu_out[10]
+                         net (fo=1, routed)           0.016     0.099    mux/out_mux[10]
     SLICE_X66Y301        FDCE                                         r  acc_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
@@ -728,7 +728,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.030     0.069    alu/Q[14]
     SLICE_X68Y301        LUT6 (Prop_B6LUT_SLICEL_I5_O)
                                                       0.015     0.084 r  alu/acc[14]_i_1/O
-                         net (fo=1, routed)           0.015     0.099    alu_out[14]
+                         net (fo=1, routed)           0.015     0.099    mux/out_mux[14]
     SLICE_X68Y301        FDCE                                         r  acc_reg[14]/D
   -------------------------------------------------------------------    -------------------
 
@@ -749,7 +749,7 @@ Slack:                    inf
                          net (fo=4, routed)           0.030     0.069    alu/Q[18]
     SLICE_X68Y302        LUT6 (Prop_D6LUT_SLICEL_I5_O)
                                                       0.014     0.083 r  alu/acc[18]_i_1/O
-                         net (fo=1, routed)           0.016     0.099    alu_out[18]
+                         net (fo=1, routed)           0.016     0.099    mux/out_mux[18]
     SLICE_X68Y302        FDCE                                         r  acc_reg[18]/D
   -------------------------------------------------------------------    -------------------
 
@@ -770,7 +770,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.030     0.069    alu/Q[1]
     SLICE_X68Y300        LUT6 (Prop_D6LUT_SLICEL_I5_O)
                                                       0.014     0.083 r  alu/acc[1]_i_1/O
-                         net (fo=1, routed)           0.016     0.099    alu_out[1]
+                         net (fo=1, routed)           0.016     0.099    mux/out_mux[1]
     SLICE_X68Y300        FDCE                                         r  acc_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
@@ -791,7 +791,7 @@ Slack:                    inf
                          net (fo=4, routed)           0.030     0.069    alu/Q[20]
     SLICE_X68Y302        LUT6 (Prop_B6LUT_SLICEL_I5_O)
                                                       0.015     0.084 r  alu/acc[20]_i_1/O
-                         net (fo=1, routed)           0.015     0.099    alu_out[20]
+                         net (fo=1, routed)           0.015     0.099    mux/out_mux[20]
     SLICE_X68Y302        FDCE                                         r  acc_reg[20]/D
   -------------------------------------------------------------------    -------------------
 
@@ -812,7 +812,7 @@ Slack:                    inf
                          net (fo=4, routed)           0.030     0.069    alu/Q[24]
     SLICE_X66Y303        LUT6 (Prop_D6LUT_SLICEL_I5_O)
                                                       0.014     0.083 r  alu/acc[24]_i_1/O
-                         net (fo=1, routed)           0.016     0.099    alu_out[24]
+                         net (fo=1, routed)           0.016     0.099    mux/out_mux[24]
     SLICE_X66Y303        FDCE                                         r  acc_reg[24]/D
   -------------------------------------------------------------------    -------------------
 
@@ -833,7 +833,7 @@ Slack:                    inf
                          net (fo=4, routed)           0.030     0.069    alu/Q[30]
     SLICE_X66Y303        LUT6 (Prop_B6LUT_SLICEL_I5_O)
                                                       0.015     0.084 r  alu/acc[30]_i_1/O
-                         net (fo=1, routed)           0.015     0.099    alu_out[30]
+                         net (fo=1, routed)           0.015     0.099    mux/out_mux[30]
     SLICE_X66Y303        FDCE                                         r  acc_reg[30]/D
   -------------------------------------------------------------------    -------------------
 
@@ -854,7 +854,7 @@ Slack:                    inf
                          net (fo=5, routed)           0.030     0.069    alu/Q[4]
     SLICE_X66Y300        LUT6 (Prop_B6LUT_SLICEL_I5_O)
                                                       0.015     0.084 r  alu/acc[4]_i_1/O
-                         net (fo=1, routed)           0.015     0.099    alu_out[4]
+                         net (fo=1, routed)           0.015     0.099    mux/out_mux[4]
     SLICE_X66Y300        FDCE                                         r  acc_reg[4]/D
   -------------------------------------------------------------------    -------------------
 

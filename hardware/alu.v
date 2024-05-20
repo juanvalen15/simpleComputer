@@ -44,11 +44,20 @@ wire signed [31:0] 	sum = in1+in2;
 wire signed [31:0] 	mul = pr1*pr2;
 wire				equ = (in1==in2);
 wire				grt = (in1<in2);
-wire		[31:0]	inv = -in2;
+wire		[31:0]	inv = ~in2;
 
-wire signed [31:0]  out_alu_wire = out_alu;
+wire signed [31:0]  w_out_alu;
 
-alumux mux(.op(op),.op1(in1),.op2(in2),.sum(sum),.mul(mul),.equ(equ),.grt(grt),.inv(inv),.out_mux(out_alu_wire));
+alumux mux(.op(op),
+		   .op1(in1),.op2(in2),
+		   .sum(sum),.mul(mul),
+		   .equ(equ),.grt(grt),
+		   .inv(inv),
+		   .out_mux(w_out_alu));
+
+always @ (*) begin
+	out_alu <= w_out_alu;
+end
 
 
 endmodule 

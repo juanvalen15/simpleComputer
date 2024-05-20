@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="119.301 ns"></ZoomEndTime>
-      <Cursor1Time time="22.400 ns"></Cursor1Time>
+      <ZoomEndTime time="94.051 ns"></ZoomEndTime>
+      <Cursor1Time time="10.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="260"></NameColumnWidth>
-      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+      <NameColumnWidth column_width="339"></NameColumnWidth>
+      <ValueColumnWidth column_width="128"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
+   <WVObjectSize size="43" />
    <wvobject type="logic" fp_name="/tb_simpleProcessor/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,24 +31,183 @@
    <wvobject type="array" fp_name="/tb_simpleProcessor/instr">
       <obj_property name="ElementShortName">instr[11:0]</obj_property>
       <obj_property name="ObjectShortName">instr[11:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_simpleProcessor/instr_addr">
       <obj_property name="ElementShortName">instr_addr[7:0]</obj_property>
       <obj_property name="ObjectShortName">instr_addr[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_addr">
+      <obj_property name="ElementShortName">mem_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_addr[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_data_in">
+      <obj_property name="ElementShortName">mem_data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_in[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_data_out">
+      <obj_property name="ElementShortName">mem_data_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_simpleProcessor/mem_wr">
       <obj_property name="ElementShortName">mem_wr</obj_property>
       <obj_property name="ObjectShortName">mem_wr</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_addr">
-      <obj_property name="ElementShortName">mem_addr[7:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_addr[7:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="divider158" type="divider">
+      <obj_property name="label">processor</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_simpleProcessor/mem_data_in">
-      <obj_property name="ElementShortName">mem_data_in[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_data_in[31:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/id_nzero">
+      <obj_property name="ElementShortName">id_nzero[31:0]</obj_property>
+      <obj_property name="ObjectShortName">id_nzero[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/id_alu_op">
+      <obj_property name="ElementShortName">id_alu_op[2:0]</obj_property>
+      <obj_property name="ObjectShortName">id_alu_op[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/id_pc_load">
+      <obj_property name="ElementShortName">id_pc_load</obj_property>
+      <obj_property name="ObjectShortName">id_pc_load</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/id_mem_wr">
+      <obj_property name="ElementShortName">id_mem_wr</obj_property>
+      <obj_property name="ObjectShortName">id_mem_wr</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/id_data_sp_push">
+      <obj_property name="ElementShortName">id_data_sp_push</obj_property>
+      <obj_property name="ObjectShortName">id_data_sp_push</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/id_data_sp_pop">
+      <obj_property name="ElementShortName">id_data_sp_pop</obj_property>
+      <obj_property name="ObjectShortName">id_data_sp_pop</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu_in1">
+      <obj_property name="ElementShortName">alu_in1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_in1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu_in2">
+      <obj_property name="ElementShortName">alu_in2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_in2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu_out">
+      <obj_property name="ElementShortName">alu_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/acc">
+      <obj_property name="ElementShortName">acc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">acc[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/pc_load">
+      <obj_property name="ElementShortName">pc_load</obj_property>
+      <obj_property name="ObjectShortName">pc_load</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/pc_data">
+      <obj_property name="ElementShortName">pc_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/data_sp_push">
+      <obj_property name="ElementShortName">data_sp_push</obj_property>
+      <obj_property name="ObjectShortName">data_sp_push</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/data_sp_pop">
+      <obj_property name="ElementShortName">data_sp_pop</obj_property>
+      <obj_property name="ObjectShortName">data_sp_pop</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/data_sp_addr">
+      <obj_property name="ElementShortName">data_sp_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_sp_addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/pup_pop">
+      <obj_property name="ElementShortName">pup_pop</obj_property>
+      <obj_property name="ObjectShortName">pup_pop</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider244" type="divider">
+      <obj_property name="label">stack pointer</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/data_sp/push">
+      <obj_property name="ElementShortName">push</obj_property>
+      <obj_property name="ObjectShortName">push</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/data_sp/pop">
+      <obj_property name="ElementShortName">pop</obj_property>
+      <obj_property name="ObjectShortName">pop</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/data_sp/addr">
+      <obj_property name="ElementShortName">addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/data_sp/cnt">
+      <obj_property name="ElementShortName">cnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/data_sp/pm">
+      <obj_property name="ElementShortName">pm[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pm[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider399" type="divider">
+      <obj_property name="label">ALU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/op">
+      <obj_property name="ElementShortName">op[2:0]</obj_property>
+      <obj_property name="ObjectShortName">op[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/in1">
+      <obj_property name="ElementShortName">in1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">in1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/in2">
+      <obj_property name="ElementShortName">in2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">in2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/out_alu">
+      <obj_property name="ElementShortName">out_alu[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out_alu[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/pr1">
+      <obj_property name="ElementShortName">pr1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pr1[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/pr2">
+      <obj_property name="ElementShortName">pr2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pr2[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/sum">
+      <obj_property name="ElementShortName">sum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sum[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/mul">
+      <obj_property name="ElementShortName">mul[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mul[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/alu/equ">
+      <obj_property name="ElementShortName">equ</obj_property>
+      <obj_property name="ObjectShortName">equ</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_simpleProcessor/processor/alu/grt">
+      <obj_property name="ElementShortName">grt</obj_property>
+      <obj_property name="ObjectShortName">grt</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_simpleProcessor/processor/alu/inv">
+      <obj_property name="ElementShortName">inv[31:0]</obj_property>
+      <obj_property name="ObjectShortName">inv[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

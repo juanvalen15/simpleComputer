@@ -20,7 +20,9 @@ wire        [ 7:0] mem_addr;
 wire signed [31:0] mem_data_in;
 wire signed [31:0] mem_data_out;
 
-processor pc(.clk(clk), .rst(rst), .instr(instr), .instr_addr(instr_addr), .mem_wr(mem_wr), .mem_addr(mem_addr), .mem_data_in(mem_data_in), .mem_data_out(mem_data_out));
+processor processor(.clk(clk), .rst(rst), 
+             .instr(instr), .instr_addr(instr_addr), 
+             .mem_wr(mem_wr), .mem_addr(mem_addr), .mem_data_in(mem_data_in), .mem_data_out(mem_data_out));
 
 // Instruction memory -------------------------------------------------------
 mem_instr minstr(.clk(clk), .addr(instr_addr), .data(instr));

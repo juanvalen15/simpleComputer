@@ -6,6 +6,7 @@ verilog xil_defaultlib  \
 "../../../../../hardware/mem_instr.v" \
 "../../../../../hardware/pc.v" \
 "../../../../../hardware/processor.v" \
+"../../../../../hardware/stack_pointer.v" \
 "../../../../../hardware/tb_simpleProcessor.v" \
 
 # compile glbl module
