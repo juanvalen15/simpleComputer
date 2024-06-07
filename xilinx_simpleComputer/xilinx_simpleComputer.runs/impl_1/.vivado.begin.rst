@@ -1,40 +1,15 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="116327" HostCore="32" HostMemory="65456828">
+    <Process Command="vivado" Owner="juan" Host="jubu" Pid="75468" HostCore="32" HostMemory="65456832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="362225" HostCore="32" HostMemory="65456828">
+    <Process Command="vivado" Owner="juan" Host="jubu" Pid="80528" HostCore="32" HostMemory="65456832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="368816" HostCore="32" HostMemory="65456828">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="382716" HostCore="32" HostMemory="65456828">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="383356" HostCore="32" HostMemory="65456828">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="383711" HostCore="32" HostMemory="65456828">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="389867" HostCore="32" HostMemory="65456828">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="juan" Host="jubu" Pid="595237" HostCore="32" HostMemory="65456828">
+    <Process Command="vivado" Owner="juan" Host="jubu" Pid="87157" HostCore="32" HostMemory="65456832">
     </Process>
 </ProcessHandle>

@@ -2,12 +2,14 @@
 verilog xil_defaultlib  \
 "../../../../../hardware/alu.v" \
 "../../../../../hardware/instr_decoder.v" \
+"../../../../../hardware/pc.v" \
+"../../../../../hardware/stack_pointer.v" \
+"../../../../../hardware/processor.v" \
+"../../../../xilinx_simpleComputer.gen/sources_1/bd/simpleComputer/sim/simpleComputer.v" \
 "../../../../../hardware/mem_data.v" \
 "../../../../../hardware/mem_instr.v" \
-"../../../../../hardware/pc.v" \
-"../../../../../hardware/processor.v" \
-"../../../../../hardware/stack_pointer.v" \
 "../../../../../hardware/tb_simpleProcessor.v" \
+"../../../../../hardware/tb_alu.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

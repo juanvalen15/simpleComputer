@@ -1,10 +1,17 @@
-module tb_alu;
+module tb_alu
+#(
+	parameter DATA_WIDTH = 32,
+	parameter OP_WIDTH   = 3
+)();
 
-  reg [2:0] op;
-  reg signed [31:0] in1, in2;
-  wire signed [31:0] out_alu;
+  reg         [  OP_WIDTH-1:0] op;
+  reg  signed [DATA_WIDTH-1:0] in1, in2;
+  wire signed [DATA_WIDTH-1:0] out_alu;
 
-  alu dut (op, in1, in2, out_alu);
+  alu #(.DATA_WIDTH(DATA_WIDTH),
+        .OP_WIDTH(OP_WIDTH)) dut (op, 
+                                  in1, in2, 
+                                  out_alu);
 
   initial begin
     // Test addition

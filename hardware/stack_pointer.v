@@ -1,16 +1,21 @@
+// Stack pointer
+
 module stack_pointer
+#(
+	parameter ADDR_WIDTH = 8
+)
 (
-	input        clk, rst,
-	input        push, pop,
-	output [7:0] addr
+	input        			clk, rst,
+	input        			push, pop,
+	output [ADDR_WIDTH-1:0] addr
 );
 
-reg         [7:0] cnt = 8'hff;
-wire signed [7:0] pm  = (push) ? -8'd1 : +8'd1;
+reg         [ADDR_WIDTH-1:0] cnt = {ADDR_WIDTH{1'b1}};
+wire signed [ADDR_WIDTH-1:0] pm  = (push) ? -{{ADDR_WIDTH-1{1'b0}},{1'b1}} : {{ADDR_WIDTH{1'b0}},{1'b1}};
 
 always @ (posedge clk or posedge rst) begin
 	if (rst)
-		cnt <= 8'hff;
+		cnt <= {ADDR_WIDTH{1'b1}};
 	else if (push | pop)
 		cnt <= cnt + pm;
 end

@@ -1,16 +1,21 @@
 module instr_decoder
+#(
+	parameter DATA_WIDTH   = 32,
+	parameter OPCODE_WIDTH = 4,
+	parameter ALU_OP_WIDTH = 3
+)
 (
-	input      		[3:0]	opcode,
-	input signed	[31:0] 	acc,
+	input      		[OPCODE_WIDTH-1:0]	opcode,
+	input signed	[  DATA_WIDTH-1:0] 	acc,
 
-	output reg 		[2:0] 	alu_op,
-	output reg      		pc_load,
-	output reg       		mem_wr,
-	output reg 				data_sp_push,
-	output reg  			data_sp_pop
+	output reg 		[ALU_OP_WIDTH-1:0] 	alu_op,
+	output reg      					pc_load,
+	output reg       					mem_wr,
+	output reg 							data_sp_push,
+	output reg  						data_sp_pop
 );
 
-wire nzero = acc != 0;
+wire nzero = acc != {DATA_WIDTH{1'b0}};
 
 always @ (*) begin
 	case (opcode)

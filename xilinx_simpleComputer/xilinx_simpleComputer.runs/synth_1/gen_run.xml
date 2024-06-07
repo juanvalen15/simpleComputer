@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1716204268" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/test.dcp">
-  <File Type="VDS-TIMING-PB" Name="processor_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="processor_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="processor.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="processor_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="processor_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="processor_drc_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1716662304" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/test.dcp">
   <File Type="RDS-RDS" Name="processor.vds"/>
   <File Type="REPORTS-TCL" Name="processor_reports.tcl"/>
   <File Type="PA-TCL" Name="processor.tcl"/>
+  <File Type="RDS-DCP" Name="processor.dcp"/>
+  <File Type="RDS-UTIL" Name="processor_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="processor_utilization_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../hardware/alu.v">
@@ -48,7 +45,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/bd/simpleComputer/simpleComputer.bd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -56,7 +52,6 @@
     </File>
     <File Path="$PPRDIR/../hardware/mem_data.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -64,7 +59,6 @@
     </File>
     <File Path="$PPRDIR/../hardware/mem_instr.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -110,9 +104,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

@@ -7,16 +7,26 @@ Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [XSIM 43-4100] "/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
-WARNING: [XSIM 43-4100] "/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/processor.v" Line 3. Module processor(INS_WIDTH=12) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/instr_decoder.v" Line 1. Module instr_decoder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/alu.v" Line 37. Module alu doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/alu.v" Line 3. Module alumux doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/pc.v" Line 3. Module pc(INSADDR_WIDTH=8) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/stack_pointer.v" Line 3. Module stack_pointer doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/processor.v" Line 3. Module processor(INS_WIDTH=12) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/instr_decoder.v" Line 1. Module instr_decoder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/alu.v" Line 37. Module alu doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/alu.v" Line 3. Module alumux doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/pc.v" Line 3. Module pc(INSADDR_WIDTH=8) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/juan/github/simpleComputer/hardware/stack_pointer.v" Line 3. Module stack_pointer doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.instr_decoder
 Compiling module xil_defaultlib.alumux
 Compiling module xil_defaultlib.alu
-Compiling module xil_defaultlib.pc
+Compiling module xil_defaultlib.pc(INSADDR_WIDTH=8)
 Compiling module xil_defaultlib.stack_pointer
-Compiling module xil_defaultlib.processor
+Compiling module xil_defaultlib.processor(INS_WIDTH=12)
 Compiling module xil_defaultlib.mem_instr
 Compiling module xil_defaultlib.mem_data
 Compiling module xil_defaultlib.tb_simpleProcessor

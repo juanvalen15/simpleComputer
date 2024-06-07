@@ -115,8 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -125,10 +123,8 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param power.enableCarry8RouteBelPower 1
-  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 8
   set_param power.BramSDPPropagationFix 1
-  set_param synth.incrementalSynthesisCache ./.Xil/Vivado-110805-jubu/incrSyn
   set_param power.enableUnconnectedCarry8PinPower 1
   set_param power.enableLutRouteBelPower 1
   set_param runs.launchOptions { -jobs 16  }
@@ -146,14 +142,20 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.runs/synth_1/processor.dcp
+  set_msg_config -source 4 -id {BD 41-1661} -limit 0
+  set_param project.isImplRun true
+  add_files /home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.srcs/sources_1/bd/simpleComputer/simpleComputer.bd
+  set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
+  set_param project.isImplRun true
   link_design -top processor -part xczu7ev-ffvc1156-2-e 
 OPTRACE "link_design" END { }
+  set_param project.isImplRun false
 OPTRACE "gray box cells" START { }
 OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }

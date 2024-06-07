@@ -2,12 +2,14 @@
 2020.2
 Feb  8 2024
 23:58:30
-/home/juan/github/simpleComputer/hardware/alu.v,1716203899,verilog,,/home/juan/github/simpleComputer/hardware/instr_decoder.v,,alu;alumux,,,,,,,,
-/home/juan/github/simpleComputer/hardware/instr_decoder.v,1715434695,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,instr_decoder,,,,,,,,
-/home/juan/github/simpleComputer/hardware/mem_data.v,1715290499,verilog,,/home/juan/github/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
-/home/juan/github/simpleComputer/hardware/mem_instr.v,1714769736,verilog,,/home/juan/github/simpleComputer/hardware/pc.v,,mem_instr,,,,,,,,
-/home/juan/github/simpleComputer/hardware/pc.v,1714770383,verilog,,/home/juan/github/simpleComputer/hardware/processor.v,,pc,,,,,,,,
-/home/juan/github/simpleComputer/hardware/processor.v,1716204262,verilog,,/home/juan/github/simpleComputer/hardware/stack_pointer.v,,processor,,,,,,,,
-/home/juan/github/simpleComputer/hardware/stack_pointer.v,1715891091,verilog,,/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,,stack_pointer,,,,,,,,
-/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,1715890001,verilog,,,,tb_simpleProcessor,,,,,,,,
-/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v,1711663571,verilog,,,,glbl,,,,,,,,
+/home/juan/github/simpleComputer/hardware/alu.v,1716582643,verilog,,/home/juan/github/simpleComputer/hardware/instr_decoder.v,,alu;alumux,,,,,,,,
+/home/juan/github/simpleComputer/hardware/instr_decoder.v,1716582322,verilog,,/home/juan/github/simpleComputer/hardware/pc.v,,instr_decoder,,,,,,,,
+/home/juan/github/simpleComputer/hardware/mem_data.v,1716581020,verilog,,/home/juan/github/simpleComputer/hardware/mem_instr.v,,mem_data,,,,,,,,
+/home/juan/github/simpleComputer/hardware/mem_instr.v,1716582710,verilog,,/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,,mem_instr,,,,,,,,
+/home/juan/github/simpleComputer/hardware/pc.v,1716662267,verilog,,/home/juan/github/simpleComputer/hardware/stack_pointer.v,,pc,,,,,,,,
+/home/juan/github/simpleComputer/hardware/processor.v,1716662294,verilog,,/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.gen/sources_1/bd/simpleComputer/sim/simpleComputer.v,,processor,,,,,,,,
+/home/juan/github/simpleComputer/hardware/stack_pointer.v,1716583404,verilog,,/home/juan/github/simpleComputer/hardware/processor.v,,stack_pointer,,,,,,,,
+/home/juan/github/simpleComputer/hardware/tb_alu.v,1716582724,verilog,,,,tb_alu,,,,,,,,
+/home/juan/github/simpleComputer/hardware/tb_simpleProcessor.v,1717754044,verilog,,/home/juan/github/simpleComputer/hardware/tb_alu.v,,tb_simpleProcessor,,,,,,,,
+/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.gen/sources_1/bd/simpleComputer/sim/simpleComputer.v,1711662992,verilog,,/home/juan/github/simpleComputer/hardware/mem_data.v,,simpleComputer,,,,,,,,
+/home/juan/github/simpleComputer/xilinx_simpleComputer/xilinx_simpleComputer.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
